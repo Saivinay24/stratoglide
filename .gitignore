@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+tools/src/
+tools/bin/
+cache/
+backups/
+runs/*/
+runs/CURRENT
+!runs/.keep
+outputs/report/*.html
+.DS_Store
+*.egg-info/

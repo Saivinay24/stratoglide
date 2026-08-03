@@ -1,0 +1,40 @@
+# Design space, airfoil candidates and PRE-REGISTERED selection weights. FROZEN at P0 for the
+# selection weights and Re rules (the sizing bounds may be widened if a bound is active, logged).
+airfoils:
+  candidates: [E387, SD7037, SD7032, SA7038, SA7035, AG35, S1223, MH32]
+  coord_files: {E387: e387, SD7037: sd7037, SD7032: sd7032, SA7038: sa7038, SA7035: sa7035,
+                AG35: ag35, AG24: ag24, S1223: s1223, MH32: mh32}
+  sweep_re: [30000, 40000, 60000, 80000, 100000, 150000, 200000, 300000]
+  sweep_ncrit: [5, 7, 9, 11, 12]
+  alpha_deg: {start: -4.0, stop: 14.0, step: 0.25}
+  validation_re: [60000, 100000, 200000, 300000]
+  tail_candidates: [NACA0008, HT08, HT12]
+  tail_re: [30000, 40000, 50000]
+selection:
+  # band rules (pre-registered so they do not depend on what wins)
+  loiter_band_rule: "grid Re in [Re_min_validated, 1.6 x Re_min_validated]"
+  return_band_rule: "grid Re in (1.6 x Re_min_validated, 3.2 x Re_min_validated]"
+  min_tc: 0.085                   # hard filter (spar depth)
+  weights:                        # metrics min-max normalised across candidates, higher is better
+    endurance_cl15cd_loiter: 0.35
+    range_ld_return: 0.15
+    clmax_loiter: 0.15
+    cm0_loiter: 0.10              # less negative is better (trim drag)
+    stall_gentleness: 0.10        # smaller CL drop in the 2 deg past CLmax is better
+    bubble_extent_loiter: 0.10    # smaller laminar-bubble chord fraction at CL of endurance max is better
+    thickness: 0.05
+  neuralfoil_model: xlarge
+  neuralfoil_disagree_flag: 0.20
+sizing:
+  bounds: {S_m2: [0.3, 2.0], AR: [6.0, 20.0], CL_loiter: [0.4, 1.1]}
+  taper: 0.6
+  oswald_e: 0.85                  # initial; AVL e replaces it after P4 (logged)
+  tail_VH: 0.50
+  tail_VV: 0.035
+  tail_config: conventional_boom  # trade documented in P3/P4
+  wing_dihedral_deg: 5.0
+  pullout_alt_budget_m: 300.0     # free-fall altitude allowed to reach stall q at 25 km
+  wind_penetration_factor: 1.25
+  grid_n: {S: 60, AR: 50, CL: 36}
+  descent_eas_factor: 1.5         # return descent flown at 1.5 x V_bestLD (EAS), motor off
+cfd: deferred

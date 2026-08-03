@@ -1,0 +1,20 @@
+{
+ "pass": 2,
+ "fail": 0,
+ "skip": 0,
+ "total": 2,
+ "results": [
+  {
+   "n": 1,
+   "name": "ISA vs USSA-1976 tabulated (geometric)",
+   "status": "PASS",
+   "msg": "max |err| 5.79e-05 over 22 tabulated points (0-35 km, incl. 0/20/25/30/32 km) vs bar 1e-03"
+  },
+  {
+   "n": 2,
+   "name": "mu(216.65 K), layer continuity, monotonic rho",
+   "status": "PASS",
+   "msg": "mu(216.65 K) err 9.20e-06 (bar 0.005); max layer-boundary jump 3.2e-13 (bar 1e-09); rho monotonic to 35 km True"
+  }
+ ]
+}

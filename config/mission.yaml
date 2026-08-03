@@ -1,0 +1,45 @@
+# StratoGlide mission requirements (MR-1..MR-11). FROZEN at P0.
+# These are INPUTS. MTOW, span, area, AR, battery mass and tail sizes are OUTPUTS.
+# Altitudes are GEOMETRIC metres everywhere.
+release:
+  alt_m: 25000.0                  # MR-1
+  v_up_mps: [0.0, 5.0]            # MR-1 balloon ascent rate range
+  pitch_deg: {nominal: -80.0, min: -90.0, max: 10.0}   # MR-2
+  roll_deg_abs: 30.0              # MR-2
+  yaw_deg: [0.0, 360.0]
+  body_rate_dps_abs: 30.0
+pullout:
+  recovery_required_fraction: 1.0 # MR-3 (autopilot cases)
+  n_limit_g: 4.0                  # limit load factor
+loiter:
+  alt_m: 19000.0                  # MR-4
+  band_m: [18000.0, 20000.0]
+  duration_min: 30.0
+  climb_rate_mps: 0.5             # repositioning 18 -> 20 km
+payload:
+  mass_kg: 1.0                    # MR-5
+  power_w: 8.0
+  min_temp_c: -20.0
+  standby_power_w: 1.0            # payload standby outside loiter (assumed)
+return:
+  chute_deploy_agl_m: 1500.0      # MR-6
+  wind_percentile: 95
+ground:
+  span_max_m: 3.0                 # MR-7
+handlaunch:
+  stall_eas_max_mps: 11.0         # MR-8
+lowre:
+  rule: "wing Re at loiter >= Re_min_validated from P2"   # MR-9
+thermal:
+  cell_min_c: -10.0               # MR-10
+  ambient_min_c: -56.5
+  launch_cell_c: 20.0             # cells at launch (pre-conditioned)
+  ascent_rate_mps: 5.0            # ~83 min to 25 km
+margins:
+  empty_weight_margin: 0.10       # MR-11
+  ultimate_factor: 1.5
+  flutter_margin: 1.2
+avionics:
+  power_w: 5.0                    # FC + GNSS + telemetry + airspeed (powered from ascent start)
+  servo_power_w: 2.0              # average servo draw in flight
+recovery_site_elev_m: 123.0       # Lucknow area ground elevation (approx), used only for AGL

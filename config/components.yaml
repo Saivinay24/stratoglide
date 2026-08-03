@@ -1,0 +1,59 @@
+# Component catalog. Every entry carries a source URL or an explicit ESTIMATE tag with its method.
+# ESTIMATE = class-typical published value, NOT fetched or weighed in this run. Replace with a
+# measured or datasheet value before build.
+fixed:
+  payload:          {mass_kg: 1.000, x_rule: pod_front, source: "MR-5 requirement (config/mission.yaml)"}
+  flight_controller: {mass_kg: 0.035, x_rule: pod_mid, source: ESTIMATE, method: "H743 wing-class FC with case, typical listed mass"}
+  gnss:             {mass_kg: 0.020, x_rule: pod_mid, source: ESTIMATE, method: "u-blox M10 module with compass, typical listed mass"}
+  airspeed_sensor:  {mass_kg: 0.012, x_rule: pod_front, source: ESTIMATE, method: "digital diff-pressure sensor + pitot tube"}
+  telemetry:        {mass_kg: 0.030, x_rule: pod_mid, source: ESTIMATE, method: "900 MHz telemetry radio + antenna"}
+  servos:           {mass_kg: 0.060, x_rule: wing_and_tail, qty: 5, source: ESTIMATE, method: "5 x 12 g digital micro servos, cold-rated class"}
+  parachute_release: {mass_kg: 0.120, x_rule: pod_rear, source: ESTIMATE, method: "0.9 m ripstop chute (~6 m/s at 7 kg class) + release servo + bay"}
+  esc:              {mass_kg: 0.025, x_rule: pod_rear, source: ESTIMATE, method: "40 A class ESC"}
+  heater:           {mass_kg: 0.015, x_rule: battery, source: ESTIMATE, method: "polyimide film heater + thermostat MOSFET"}
+battery_cell:
+  name: "Samsung INR21700-50E (class)"
+  mass_kg: 0.069
+  v_nom: 3.6
+  ah: 4.9
+  r_int_ohm_25c: 0.025
+  cp_jkgk: 900.0
+  source: ESTIMATE
+  method: "21700 NMC 4.9 Ah class nominal values; capacity-vs-T table below is a typical NMC trend, not a fetched datasheet curve"
+  capacity_vs_temp_c: {-40: 0.25, -30: 0.45, -20: 0.65, -10: 0.80, 0: 0.90, 10: 0.96, 25: 1.00, 45: 1.00}
+  rint_factor_vs_temp_c: {-40: 8.0, -30: 5.0, -20: 3.0, -10: 2.0, 0: 1.5, 10: 1.2, 25: 1.0, 45: 0.9}
+  dod_limit: 0.90
+insulation:
+  k_w_mk: 0.030                   # closed-cell foam (XPS/PU class), ESTIMATE
+  density_kgm3: 35.0
+  thickness_m: 0.025              # design input; thermal model reports heater power needed
+  source: ESTIMATE
+  method: "closed-cell foam handbook range k 0.025-0.035 W/mK"
+structure:                        # areal densities per WETTED area unless stated
+  wing_shell_kgm2: 0.40           # foam core + 1 ply glass/carbon skin, ESTIMATE (RC composite sailplane practice)
+  tail_shell_kgm2: 0.30
+  pod_shell_kgm2: 0.70
+  boom_kg_per_m: 0.085            # carbon tube ~16 mm OD x 1 mm wall
+  carbon_ud: {rho_kgm3: 1550.0, sigma_allow_pa: 6.0e8, E_pa: 1.2e11}
+  source: ESTIMATE
+  method: "areal densities from RC composite glider practice; carbon UD properties handbook class values with knockdown"
+pod:
+  length_m: 0.70
+  diameter_m: 0.13
+  nose_x_m: -0.32                 # pod nose relative to wing root LE (negative = ahead)
+wiring_fraction: 0.05             # of avionics + propulsion mass
+motors:                           # QPROP-style constants; all ESTIMATE (class-typical vendor-listed values, not fetched)
+  - {name: "T-Motor MN3508 KV380 (class)", kv_rpm_per_v: 380, rm_ohm: 0.152, i0_a: 0.40, mass_kg: 0.087, p_max_w: 300, source: ESTIMATE}
+  - {name: "T-Motor MN3510 KV360 (class)", kv_rpm_per_v: 360, rm_ohm: 0.120, i0_a: 0.45, mass_kg: 0.103, p_max_w: 400, source: ESTIMATE}
+  - {name: "SunnySky X2216 KV880 (class)", kv_rpm_per_v: 880, rm_ohm: 0.105, i0_a: 0.40, mass_kg: 0.068, p_max_w: 350, source: ESTIMATE}
+  - {name: "T-Motor AT2814 KV900 (class)", kv_rpm_per_v: 900, rm_ohm: 0.045, i0_a: 1.00, mass_kg: 0.107, p_max_w: 700, source: ESTIMATE}
+  - {name: "T-Motor MN4010 KV475 (class)", kv_rpm_per_v: 475, rm_ohm: 0.091, i0_a: 0.50, mass_kg: 0.133, p_max_w: 600, source: ESTIMATE}
+  - {name: "T-Motor MN2212 KV780 (class)", kv_rpm_per_v: 780, rm_ohm: 0.180, i0_a: 0.30, mass_kg: 0.058, p_max_w: 220, source: ESTIMATE}
+airspeed_sensors:                 # for P8 range/resolution check; ESTIMATE (class-typical datasheet ranges)
+  - {name: "MS4525DO 1 psi diff (class)", range_pa: 6895, bits: 14, span_frac: 0.8, source: ESTIMATE}
+  - {name: "SDP33 (class)", range_pa: 1500, resolution_pa: 0.017, source: ESTIMATE}
+  - {name: "SDP31 (class)", range_pa: 500, resolution_pa: 0.0017, source: ESTIMATE}
+  - {name: "DLVR-L10D (class)", range_pa: 2491, bits: 14, span_frac: 0.8, source: ESTIMATE}
+propeller:
+  areal_mass_kg_per_m2_disk: 0.25 # carbon folding prop blades + hub, ESTIMATE scaling on disk area
+  hub_kg: 0.020

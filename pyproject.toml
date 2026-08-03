@@ -1,0 +1,27 @@
+[project]
+name = "stratoglide"
+version = "0.1.0"
+description = "Balloon-launched stratospheric ISR glider: mission requirements to build-ready design package"
+authors = [
+    { name = "Sai Vinay Bhoomireddy", email = "saivinaybhoomireddy@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "aerosandbox==4.2.10",
+    "cadquery>=2.8.0",
+    "jinja2>=3.1.6",
+    "jsbsim==1.3.3",
+    "jsonschema>=4.26.0",
+    "matplotlib>=3.11.2",
+    "neuralfoil==0.3.3",
+    "numpy>=2.5.5",
+    "pandas>=3.1.1",
+    "pytest>=9.2.0",
+    "pyyaml>=6.0.3",
+    "scipy>=1.18.1",
+    "trimesh>=5.2.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"

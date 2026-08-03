@@ -1,0 +1,58 @@
+# Pre-registered pass bars. FROZEN at P0 (sha256 recorded in HONEST_LOG.md).
+# Never loosened after results are seen. A miss is a redesign or an honest negative.
+atmos:
+  ref_tol_frac: 0.001             # check 1: rho, T, p vs USSA-1976 tabulated (PDAS) values
+  mu_ref_216_65: 1.4216e-5
+  mu_tol_frac: 0.005              # check 2
+  continuity_tol: 1.0e-9          # relative jump at 11/20/32 km
+recompute_tol_frac: 0.005         # check 3
+determinism_decimals: 4           # check 4
+validation:                       # check 5
+  re: [100000, 200000]
+  foils: [E387, SD7037]
+  cd_mape_max: 0.15               # CD MAPE at matched CL over cl_range
+  cl_range: [0.3, 1.0]
+  cla_rel_err_max: 0.10           # linear-range lift slope, relative
+  cla_alpha_range_deg: [-2.0, 5.0]
+  clmax_abs_err_max: 0.10
+  held_out_re: [60000, 300000]    # reported, no bar (Ncrit is chosen on 100k/200k only)
+  rule_re_min_validated: "lowest Re at which BOTH foils pass all three metrics at the design Ncrit"
+selection:                        # check 7
+  ncrit_robustness: [7, 9, 11, 12]
+sizing:                           # checks 8-9
+  mass_loop_tol_frac: 0.001
+  cg_match_m: 0.001
+  opti_vs_grid_tol_frac: 0.02
+  plausibility_band: {mtow_kg: [3.0, 5.0], span_m: [2.0, 3.0]}   # NOT a bar: deviation explained in HONEST_LOG
+stability:                        # checks 11-13
+  sm_pct: [8.0, 15.0]
+  sp_zeta_min: {sl: 0.30, alt20: 0.15}
+  phugoid: {sl: "stable", alt20: "stable_or_t2_ge_55s"}
+  phugoid_t2_min_s: 55.0
+  dr_zeta_min: {sl: 0.08, alt20: 0.02}
+  spiral_t2_min_s: 20.0
+  roll_tau_max_s: {sl: 1.0}
+  phugoid_ratio_tol_frac: 0.20    # T_ph(20km)/T_ph(SL) vs V_TAS ratio
+  avl_vs_asb: {cla_rel: 0.05, xnp_frac_mac: 0.02}
+release:                          # checks 14-16
+  jsbsim_atmos_tol_frac: 0.005
+  jsb_vs_own: {alt_lost_rel: 0.15, peak_n_rel: 0.10}
+  mc_n_min: 500
+  recovery_autopilot: 1.0
+  recovery_passive_min: 0.95
+  mach_p99_max: 0.50
+  n_max_g: 4.0
+  flutter_margin: 1.2
+  energy_dedt_max_wpkg: 1.0e-3
+  recovered_def: {window_s: 120.0, gamma_tol_deg: 3.0, rate_tol_dps: 5.0, hold_s: 10.0}
+prop:                             # checks 17-18
+  j_range: [0.2, 0.8]
+  ct_metric: "mean |CT_bemt - CT_exp| / mean(CT_exp) over points with J in j_range and CT_exp > 0"
+  ct_rel_max: 0.10
+  eta_peak_abs_max: 0.05
+  vp_equal_tol: 0.01
+perf:                             # check 19
+  glide_range_rel: 0.05
+  endurance_rel: 0.02
+build:                            # check 20
+  mesh_rel: 0.01

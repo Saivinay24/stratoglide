@@ -1,0 +1,39 @@
+file,sha256,url,retrieved
+uiuc_lsat/COORD01.TXT,b872d0a8c27d39d10b4f3ba454c96f1dc260950d2a13395fbe7f4f36e38182b4,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume01.zip (volume01/COORD01.TXT),2026-11-18
+uiuc_lsat/COORD03.TXT,60678d2d87f31a0386bdce4a86baf799aed7bb7e49e8210bd1ec8eb62bf425e9,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume03.zip (volume03/COORD03.TXT),2026-11-18
+uiuc_lsat/DRAG01.TXT,ffe33dd94d41243b219dbc3c46a78daafd057332b6e36a7e86c6d19ac64223e0,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume01.zip (volume01/DRAG01.TXT),2026-11-18
+uiuc_lsat/DRAG03.TXT,b75e98b6ffd88e3f049434a9a1e4c4f3abeee1db04564ddaff98bc7cf92df1f1,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume03.zip (volume03/DRAG03.TXT),2026-11-18
+uiuc_lsat/FORMAT01.TXT,070c40f0a526f192cb87ea238176506732af9f9d9d0f8a428bacab316543c959,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume01.zip (volume01/FORMAT01.TXT),2026-11-18
+uiuc_lsat/FORMAT03.TXT,070c40f0a526f192cb87ea238176506732af9f9d9d0f8a428bacab316543c959,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume03.zip (volume03/FORMAT03.TXT),2026-11-18
+uiuc_lsat/GPL.TXT,ac88d8b5251b5b4e8340aad3abfc9eb01e91ce4d8564c4b883047d9b23e601b2,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume.zip (volume/GPL.TXT),2026-11-18
+uiuc_lsat/LIFT01.TXT,dd952c36845bb6ae454e5dab4169678501c42eb45a5ca048a51f39cefff6df51,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume01.zip (volume01/LIFT01.TXT),2026-11-18
+uiuc_lsat/LIFT03.TXT,5d519bfca6da6aabfeb9d267b9fcf0094a8635b5f5633a236dd5b49832a29ec7,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume03.zip (volume03/LIFT03.TXT),2026-11-18
+uiuc_lsat/README01.TXT,c2c060982090b913c6af09f76e0b0759ce23ae32d96a49b8bd553a4fb5c76fd3,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume01.zip (volume01/README01.TXT),2026-11-18
+uiuc_lsat/README03.TXT,ba3665c95507cde1d80ad605ffeb88fac8afb702e94f5449421da02d92697b42,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume03.zip (volume03/README03.TXT),2026-11-18
+coords/ag24.dat,1552656c71d7141857be1af1cef11fec749a380708bd95d24ee18fe7b872a731,https://m-selig.ae.illinois.edu/ads/coord/ag24.dat,2026-11-18
+coords/ag35.dat,60a9404d4ee627329804e7a78038e9055ab2070ba436a3dcb5b90ac2b4b40fb7,https://m-selig.ae.illinois.edu/ads/coord/ag35.dat,2026-11-18
+coords/e387.dat,98aa8a4076edbfd1c52e3a2d0cf17b1ef1cbc51ae5da3ab8e5361047b89ee523,https://m-selig.ae.illinois.edu/ads/coord/e387.dat,2026-11-18
+coords/ht08.dat,c5658ed2db2d61f727c90f54f3fc3bd077735f19b1c0188c19e267c306e0f76d,https://m-selig.ae.illinois.edu/ads/coord/ht08.dat,2026-11-18
+coords/ht12.dat,a4b6ee6120dd99e5b6e04249a0f9adc08e9f3efc4420d290dbd02087d1abc9b6,https://m-selig.ae.illinois.edu/ads/coord/ht12.dat,2026-11-18
+coords/mh32.dat,b65ba066249b936bf80e0f427e2f10bc95c81cac9cff67c9af34b4c0386acaaa,https://m-selig.ae.illinois.edu/ads/coord/mh32.dat,2026-11-18
+coords/naca0008.dat,e1fc6db22dd2d270076bc625274608aee674fae367f537d4f47019742c1ff276,https://m-selig.ae.illinois.edu/ads/coord/naca0008.dat,2026-11-18
+coords/s1223.dat,f2e06d165d6244d2fc1c7dde9e46c46c4d42a70b183620ea02fd693fbfa5cf53,https://m-selig.ae.illinois.edu/ads/coord/s1223.dat,2026-11-18
+coords/sa7035.dat,e0614a420aad9401f91e639ff8da5f585ea766c953716692592874b2520cd4ed,https://m-selig.ae.illinois.edu/ads/coord/sa7035.dat,2026-11-18
+coords/sa7038.dat,a350260eb0e8c264b4802fecad413f008514888a0fef6d5d5285d390943c9577,https://m-selig.ae.illinois.edu/ads/coord/sa7038.dat,2026-11-18
+coords/sd7032.dat,0ac0dda64890b21cb8ccbee8d7e347f81925152bffac04b1cf6b981e53163aaf,https://m-selig.ae.illinois.edu/ads/coord/sd7032.dat,2026-11-18
+coords/sd7037.dat,58dc2b375e8c96c4b2ad7acd2968de9d69334ec80c656da10a022981e470784f,https://m-selig.ae.illinois.edu/ads/coord/sd7037.dat,2026-11-18
+props/apce_10x5_geom.txt,8f75a94d7fcac2cd4b6cdcb558e51f3c0dd4d6f46a01d4ab6095fbd511a666b2,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_10x5_geom.txt,2026-11-18
+props/apce_10x5_kt0821_5000.txt,3df32a75d9b09452a6cd22f4853a7ce4c09b51e412fda3c6bea247dd7ce09c61,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_10x5_kt0821_5000.txt,2026-11-18
+props/apce_10x5_kt0823_6005.txt,1db2ff99dc611079a5aa91f73ed13fb48a1ebe6874b294789e0872b9756c41e6,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_10x5_kt0823_6005.txt,2026-11-18
+props/apce_10x5_pg0820_4005.txt,088add9d07eae933fb0098c187c980427e5f21525239791095e0dbb4ce2780ee,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_10x5_pg0820_4005.txt,2026-11-18
+props/apce_10x7_geom.txt,5a0e4d7ae40e948cfce7d039f2a3b768dec7303cf47a595af97b7219b95dfa4f,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_10x7_geom.txt,2026-11-18
+props/apce_10x7_pg0812_4007.txt,8ee5ffa2e516f1d296f6253468b7fddb6427895dc163a826634f6c7df375be63,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_10x7_pg0812_4007.txt,2026-11-18
+props/apce_10x7_pg0814_5001.txt,50aa520c36df42a7a1a13576b07b24e608ec791e10d04ad68eb5ec130c2be1b6,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_10x7_pg0814_5001.txt,2026-11-18
+props/apce_10x7_pg0816_6015.txt,3a2c0217fda81bdf10c054ce55e1821ffebf674fd869944d4f4c9cfd2bbfeb24,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_10x7_pg0816_6015.txt,2026-11-18
+props/apce_9x6_geom.txt,c24bf9d23fcd24a95dcc4cc67be5c3b3816750a477106e24647193a88c465388,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_9x6_geom.txt,2026-11-18
+props/apce_9x6_rd0988_4003.txt,4af60dc98e96aaef54d50a836bee44262b3fd64db1a56c8cdae2c18fcdb7a1dd,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_9x6_rd0988_4003.txt,2026-11-18
+props/apce_9x6_rd0990_5000.txt,119ae753f93375ca178bcd23c305882368e72859317dca275901a678d9be185f,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_9x6_rd0990_5000.txt,2026-11-18
+props/apce_9x6_rd0992_6015.txt,10d65a9ec4281991cf8e7f35b313997ed8f07f6a52b5b767ec92c1ae6d4624a3,https://m-selig.ae.illinois.edu/props/volume-1/data/apce_9x6_rd0992_6015.txt,2026-11-18
+apm.pdef.xml,6f603458cbd78f616feef88f8621a9d7f469039d8e3b547f66cceb05ce391a85,https://autotest.ardupilot.org/Parameters/ArduPlane/apm.pdef.xml,2026-11-18
+pdas_ussa1976_bigtables.html,7323baa4df9e042b99296d80ae159466416663b6de9719a78817602329116279,https://www.pdas.com/bigtables.html,2026-11-18
+pdas_ussa1976_table1SI.html,ab1f5ebc39d3186f3346752da4f82245155d907c6aab553553747fd85aef6e73,https://www.pdas.com/atmosTable1SI.html,2026-11-18

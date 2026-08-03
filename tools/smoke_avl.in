@@ -1,0 +1,5 @@
+LOAD tools/src/Avl/runs/vanilla.avl
+OPER
+X
+
+QUIT
