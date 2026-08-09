@@ -6,3 +6,4 @@ before building on any claimed state. Canonical plan: /Users/saivinay/Desktop/ka
 | Phase | State | Tag |
 |---|---|---|
 | P0 scaffold, env, XFOIL/AVL builds | done | sg-p0-scaffold |
+| P1 ISA-1976 geometric + envelope map | done (checks 1-2 PASS) | sg-p1-atmos |

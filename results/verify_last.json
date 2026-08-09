@@ -1,9 +1,15 @@
 {
- "pass": 2,
+ "pass": 3,
  "fail": 0,
  "skip": 0,
- "total": 2,
+ "total": 3,
  "results": [
+  {
+   "n": 0,
+   "name": "pre-registration sha256 (bars.yaml, mission.yaml)",
+   "status": "PASS",
+   "msg": "bars.yaml match (329c66080aa0); mission.yaml match (3348d87014ae)"
+  },
   {
    "n": 1,
    "name": "ISA vs USSA-1976 tabulated (geometric)",

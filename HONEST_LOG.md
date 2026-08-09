@@ -19,3 +19,10 @@ Selection weights and Re-band rules are pre-registered in config/design_space.ya
 - AVL: the plan names 3.40; the MIT page serves `avl3.40b.tgz`, built on rung 1 (gfortran + libX11 +
   Accelerate LAPACK). Smoke: bundled `vanilla.avl` alpha 0 gives CLtot 0.15546, e 0.9745.
 - No rung beyond 1 was needed for either tool.
+## 2026-11-18 P1 reference-table deviation
+
+- The plan lists USSA-1976 reference points 0, 11, 20, 25, 30, 32 km. The fetched public-domain source
+  (PDAS tables of USSA-1976, stored raw in data/validation/) tabulates geometric altitude every 5 km
+  (bigtables, 5 significant figures) and every 2 km (ratio table, 4-5 significant figures). 11 km is in
+  neither table, so check 1 uses all 22 tabulated points from 0 to 35 km (which include 0/20/25/30/32 km
+  and 10/12 km around the tropopause) instead of an 11 km point. This is more points, not fewer.
