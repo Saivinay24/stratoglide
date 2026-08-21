@@ -1,0 +1,32 @@
+# Sizing model assumptions (NOT pass bars; not part of the frozen pre-registration).
+# Every value is a modelling choice with its basis stated. Changing one is logged in HONEST_LOG.
+layout:
+  tail_arm_over_span: 0.42        # wing MAC c/4 to tail c/4; sailplane practice 0.40-0.50 of span
+  htail_AR: 5.0
+  vtail_AR: 1.6
+  boom_diameter_m: 0.016
+  wing_x_le_root_m: 0.0           # wing root LE defines x = 0
+aero:
+  oswald_e_initial: 0.85          # replaced by AVL span efficiency in P4 (logged)
+  excrescence_factor: 1.10        # +10% on parasite drag for interference, gaps, pitot, hinges (Raymer-style)
+  clmax_3d_factor: 0.90           # CLmax_wing = 0.9 x section CLmax (taper, tip losses)
+  loiter_min_speed_margin: 1.20   # loiter V >= 1.2 Vs  ->  CL_loiter <= CLmax_wing / 1.44
+  stall_re_for_clmax: 150000      # section CLmax taken at the hand-launch Re grid point
+propulsion_initial:               # used until P6 provides eta at 19 km and the selected motor/prop
+  eta_prop: 0.70
+  eta_motor: 0.80
+  eta_esc: 0.95
+  motor_kg_per_kw: 0.25           # continuous motor-mass model for the optimizer, ESTIMATE from catalog trend
+  motor_base_kg: 0.02
+  prop_diameter_m: 0.40
+pack_overhead: 0.10               # pack wiring, BMS, cell holders, ESTIMATE
+thermal:
+  h_ext_wm2k: 3.0                 # natural convection at low rho + radiation inside the pod, ESTIMATE
+  heater_max_w: 12.0
+  setpoint_c: -2.0                # thermostat on below this; MR-10 floor is -10 C
+  box_wall_gap_m: 0.005
+  cell_d_m: 0.021
+  cell_h_m: 0.070
+  payload_insulation_m: 0.010     # payload pod foam, for the payload thermal budget
+descent:
+  quad_nodes: 40

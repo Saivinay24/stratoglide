@@ -27,8 +27,11 @@ p1:
 
 p2:
 	$(PY) -m stratoglide.airfoil.uiuc_loader
+	$(PY) -m stratoglide.airfoil.xfoil_runner --foils all --re all --ncrit all --jobs 8
+	$(PY) -m stratoglide.airfoil.xfoil_runner --foils NACA0008 HT08 HT12 --re 30000 40000 50000 --ncrit all --jobs 8
 	$(PY) -m stratoglide.airfoil.validate
 	$(PY) -m stratoglide.airfoil.select
+	$(PY) -m stratoglide.airfoil.validate_selected
 
 p3:
 	$(PY) -m stratoglide.sizing.run_sizing

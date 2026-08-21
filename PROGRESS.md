@@ -7,3 +7,4 @@ before building on any claimed state. Canonical plan: /Users/saivinay/Desktop/ka
 |---|---|---|
 | P0 scaffold, env, XFOIL/AVL builds | done | sg-p0-scaffold |
 | P1 ISA-1976 geometric + envelope map | done (checks 1-2 PASS) | sg-p1-atmos |
+| P2 airfoil validation + selection | done; check 5 FAIL (honest), D1-D4 logged; E387 selected after D3 gate | sg-m1-validated-polars |

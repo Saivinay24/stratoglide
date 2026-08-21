@@ -117,6 +117,73 @@ def check3():
                                f"Re {re_:.0f}, M {m:.3f}; max rel diff {worst:.1e} (bar {tol})")
 
 
+# ---------------------------------------------------------------- 4
+def check4():
+    from .airfoil import neuralfoil_runner, xfoil_runner
+    dec = _bars()["determinism_decimals"]
+    cases = [("E387", 100000.0, 9.0), ("SD7037", 200000.0, 5.0), ("SD7037", 60000.0, 7.0)]
+    worst = 0.0
+    for f, r, nc in cases:
+        for mod in (xfoil_runner, neuralfoil_runner):
+            a = mod.polar(f, r, nc)
+            b = mod.polar(f, r, nc, nocache=True)
+            if a["alpha"] != b["alpha"]:
+                return "FAIL", f"{mod.__name__} {f} {r}: alpha sets differ ({len(a['alpha'])} vs {len(b['alpha'])})"
+            for k in ("cl", "cd", "cm"):
+                worst = max(worst, float(np.max(np.abs(np.round(a[k], dec) - np.round(b[k], dec)))))
+    return _pf(worst == 0.0), f"3 XFOIL + 3 NeuralFoil polars re-run uncached; max diff after rounding to {dec} dp = {worst:g}"
+
+
+# ---------------------------------------------------------------- 5
+def check5():
+    v = read_json(_phase("p2", "validation.json"))
+    b = _bars()["validation"]
+    nc = v["design_ncrit"]
+    parts, ok = [], True
+    for f in b["foils"]:
+        for r in b["re"]:
+            x = v["results"][f"{f}|{r}|{nc}|xfoil"]
+            m, p = x["metrics"], x["pass"]
+            ok &= p["all"]
+            parts.append(f"{f} {r//1000}k CD {100*m['cd_mape']:.1f}% CLa {100*m['cla_rel_err']:.1f}% "
+                         f"CLmax {m['clmax_abs_err']:.3f}{'' if p['all'] else ' (miss)'}")
+    return _pf(ok), f"design Ncrit {nc}; " + "; ".join(parts) + f"; bars <=15%, <=10%, <=0.10"
+
+
+# ---------------------------------------------------------------- 6
+def check6():
+    v = read_json(_phase("p2", "validation.json"))
+    nc = v["design_ncrit"]
+    have = all(f"{f}|60000|{nc}|xfoil" in v["results"] for f in ("E387", "SD7037"))
+    log = (ROOT / "HONEST_LOG.md").read_text()
+    in_log = "60k" in log
+    rep = ROOT / "outputs" / "report" / "StratoGlide_Report.html"
+    if not rep.exists():
+        raise Skip(f"report not built yet (60k in validation.json {have}, HONEST_LOG {in_log})")
+    rep_ok = "60k" in rep.read_text()
+    rmin = v.get("re_min_validated")
+    ok = have and in_log and rmin is not None and rep_ok
+    return _pf(ok), (f"60k in validation.json {have}, HONEST_LOG {in_log}, report {rep_ok}; Re_min_validated = {rmin}")
+
+
+# ---------------------------------------------------------------- 7
+def check7():
+    from .airfoil.select import score
+    s = read_json(_phase("p2", "selection.json"))
+    w = load_cfg("design_space")["selection"]["weights"]
+    if w != s["weights"]:
+        return "FAIL", "weights in selection.json differ from config/design_space.yaml"
+    nc = str(s["design_ncrit"])
+    sc = score(s["per_ncrit"][nc]["metrics"], w)
+    win = max(sc, key=sc.get)
+    repro = win == s["winner_design_ncrit"]
+    stable = s["winner_stable_across_ncrit"]
+    logged = stable or ("flip" in (ROOT / "HONEST_LOG.md").read_text().lower())
+    return _pf(repro and logged), (f"recomputed winner {win} == stored {s['winner_design_ncrit']}: {repro}; "
+                                   f"stable across Ncrit 7-12: {stable}{'' if stable else ' (flip logged: ' + str(logged) + ')'}; "
+                                   f"selected {s['selected']}; Kendall tau top-3 min {min(s['kendall_tau_top3'].values()):.2f}")
+
+
 def _stub(n):
     def f():
         raise Skip(f"check {n} not implemented yet (phase pending)")

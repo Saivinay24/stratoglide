@@ -37,3 +37,7 @@ props/apce_9x6_rd0992_6015.txt,10d65a9ec4281991cf8e7f35b313997ed8f07f6a52b5b767e
 apm.pdef.xml,6f603458cbd78f616feef88f8621a9d7f469039d8e3b547f66cceb05ce391a85,https://autotest.ardupilot.org/Parameters/ArduPlane/apm.pdef.xml,2026-11-18
 pdas_ussa1976_bigtables.html,7323baa4df9e042b99296d80ae159466416663b6de9719a78817602329116279,https://www.pdas.com/bigtables.html,2026-11-18
 pdas_ussa1976_table1SI.html,ab1f5ebc39d3186f3346752da4f82245155d907c6aab553553747fd85aef6e73,https://www.pdas.com/atmosTable1SI.html,2026-11-18
+uiuc_lsat_vol5/e387_drag.dat,c39c30a446b8bcd764ed29d5b0b9bd2f65efe10280889845cfa50daf8f119bdb,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume05.zip (volume05/e387_drag.dat),2026-11-18
+uiuc_lsat_vol5/e387_lift.dat,9b916e65af9ba46c545b1aeb6f2953facb28274df6d96523eb1b62dbbb37018f,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume05.zip (volume05/e387_lift.dat),2026-11-18
+uiuc_lsat_vol5/s1223_lift.dat,b904811207fecd44e17fd8afed9105f2a9bb2af7b172075a78e4f5b5def157c2,https://m-selig.ae.illinois.edu/pd/pub/lsat/volume05.zip (volume05/s1223_lift.dat),2026-11-18
+../winds/lucknow_igra_2016_2025.json (derived),7be4ce9386534668ca8b61eb40782e97689f77e1b2529f695d4e9820ae00418f,derived by src/stratoglide/perf/wind_profile.py from raw zip sha256 1731dfdc4dc723c3aed0ee89436de60c3ae9d41aa208f95c2886491f99f28d35 at https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/access/data-por/INM00042369-data.txt.zip,2026-11-18

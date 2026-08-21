@@ -11,3 +11,5 @@ runs/CURRENT
 outputs/report/*.html
 .DS_Store
 *.egg-info/
+logs/
+data/winds/raw/

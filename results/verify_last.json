@@ -1,8 +1,8 @@
 {
  "pass": 3,
- "fail": 0,
- "skip": 0,
- "total": 3,
+ "fail": 1,
+ "skip": 1,
+ "total": 5,
  "results": [
   {
    "n": 0,
@@ -11,16 +11,28 @@
    "msg": "bars.yaml match (329c66080aa0); mission.yaml match (3348d87014ae)"
   },
   {
-   "n": 1,
-   "name": "ISA vs USSA-1976 tabulated (geometric)",
+   "n": 4,
+   "name": "determinism: XFOIL + NeuralFoil re-run",
    "status": "PASS",
-   "msg": "max |err| 5.79e-05 over 22 tabulated points (0-35 km, incl. 0/20/25/30/32 km) vs bar 1e-03"
+   "msg": "3 XFOIL + 3 NeuralFoil polars re-run uncached; max diff after rounding to 4 dp = 0"
   },
   {
-   "n": 2,
-   "name": "mu(216.65 K), layer continuity, monotonic rho",
+   "n": 5,
+   "name": "XFOIL vs UIUC LSAT at Re 100k/200k",
+   "status": "FAIL",
+   "msg": "design Ncrit 5; E387 100k CD 38.9% CLa 22.6% CLmax 0.030 (miss); E387 200k CD 19.5% CLa 6.1% CLmax 0.067 (miss); SD7037 100k CD 17.9% CLa 2.6% CLmax 0.070 (miss); SD7037 200k CD 5.5% CLa 2.0% CLmax 0.085; bars <=15%, <=10%, <=0.10"
+  },
+  {
+   "n": 6,
+   "name": "Re 60k result present; Re_min_validated defined",
+   "status": "SKIP",
+   "msg": "report not built yet (60k in validation.json True, HONEST_LOG True)"
+  },
+  {
+   "n": 7,
+   "name": "selection reproducible; Ncrit robustness",
    "status": "PASS",
-   "msg": "mu(216.65 K) err 9.20e-06 (bar 0.005); max layer-boundary jump 3.2e-13 (bar 1e-09); rho monotonic to 35 km True"
+   "msg": "recomputed winner S1223 == stored S1223: True; stable across Ncrit 7-12: False (flip logged: True); selected E387; Kendall tau top-3 min 0.33"
   }
  ]
 }
