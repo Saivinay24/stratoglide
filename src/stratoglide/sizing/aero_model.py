@@ -2,7 +2,7 @@
 
 Wing section drag: smooth fit of XFOIL polars of the selected airfoil at the design Ncrit over the sweep Re
 grid (60k-300k), multiplied by the measured knockdown k(Re) (downgrade D2). The fit form is casadi-safe:
-  ln cd = c0 + c1 cl + c2 cl^2 + c3 L + c4 cl L + c5 L^2 ,  L = ln(Re / 1e5)
+  ln cd = c0 + c1 cl + c2 cl^2 + c3 L + c4 cl L + c5 L^2 + c6 cl^3 + c7 cl^2 L,  L = ln(Re / 1e5)
 Parasite drag: pod, boom and tails by component build-up (turbulent flat-plate Cf, Raymer form factors) at
 the actual Re, plus the excrescence factor. Induced: CL^2 / (pi e AR).
 """
@@ -30,7 +30,7 @@ def fit_section_polar(foil: str, ncrit: float, cl_lo=0.15, cl_hi=None, which_k="
         k = drag_k(r, which_k, vjson)
         L = _np.log(r / 1e5)
         for c, d in zip(cl[m], cd[m]):
-            X.append([1, c, c * c, L, c * L, L * L])
+            X.append([1, c, c * c, L, c * L, L * L, c ** 3, c * c * L])
             Y.append(_np.log(d * k))
     X, Y = _np.array(X), _np.array(Y)
     coef, *_ = _np.linalg.lstsq(X, Y, rcond=None)
@@ -41,8 +41,8 @@ def fit_section_polar(foil: str, ncrit: float, cl_lo=0.15, cl_hi=None, which_k="
 
 def section_cd(cl, re_, coef, np=_np):
     L = np.log(re_ / 1e5)
-    c0, c1, c2, c3, c4, c5 = coef
-    return np.exp(c0 + c1 * cl + c2 * cl ** 2 + c3 * L + c4 * cl * L + c5 * L ** 2)
+    c0, c1, c2, c3, c4, c5, c6, c7 = coef
+    return np.exp(c0 + c1 * cl + c2 * cl ** 2 + c3 * L + c4 * cl * L + c5 * L ** 2 + c6 * cl ** 3 + c7 * cl ** 2 * L)
 
 
 def cf_turb(re_, np=_np):

@@ -64,7 +64,9 @@ class SizingModel:
         Sh = self.ds["sizing"]["tail_VH"] * S * mac / lt
         Sv = self.ds["sizing"]["tail_VV"] * S * b / lt
         pod = self.c["pod"]
-        boom_l = lt + 0.25 * cr - (pod["nose_x_m"] + pod["length_m"]) + 0.05
+        ch = np.sqrt(Sh / self.s["layout"]["htail_AR"])
+        cv = Sv / np.sqrt(Sv * self.s["layout"]["vtail_AR"])
+        boom_l = lt + 0.25 * cr + 0.75 * np.fmax(ch, cv) - (pod["nose_x_m"] + pod["length_m"] - 0.05)
         return {"b": b, "cr": cr, "ct": lam * cr, "mac": mac, "lt": lt, "S_h": Sh, "S_v": Sv,
                 "pod_l": pod["length_m"], "pod_d": pod["diameter_m"], "boom_l": boom_l,
                 "boom_d": self.s["layout"]["boom_diameter_m"]}
@@ -89,12 +91,12 @@ class SizingModel:
         M_lim = M_ult / self.m["margins"]["ultimate_factor"]
         A_str = M_ult / (cu["sigma_allow_pa"] * h)
         A_def = M_lim * L / (0.2 * cu["E_pa"] * h ** 2)
-        A = np.fmax(A_str, A_def)
+        A = np.fmax(np.fmax(A_str, A_def), self.s["structure"]["spar_min_cap_area_m2"])
         return 2 * A * cu["rho_kgm3"] * L * 2 * 0.6 * 1.2, {"A_cap_m2": A, "h_m": h, "M_ult_Nm": M_ult,
                                                           "A_strength": A_str, "A_deflection": A_def}
 
     # ------------------------------------------------------------------ evaluate
-    def evaluate(self, S, AR, CL, mtow, np=_np):
+    def evaluate(self, S, AR, CL, mtow, np=_np, n_cells_fixed=None, E_heat_override=None):
         m, c, s = self.m, self.c, self.s
         W = mtow * G
         geo = self.geometry(S, AR, np)
@@ -152,9 +154,17 @@ class SizingModel:
             P_h_mis = np.fmax(0.0, (Tset - T_mis) / R)
             E_heat = (P_h_asc * t_asc + P_h_mis * t_flight) / 3600.0
             E_req = E_noheat + E_heat
+        if E_heat_override is not None:
+            E_heat = E_heat_override
+            E_req = E_noheat + E_heat
         n_cells = E_req / (cell["v_nom"] * cell["ah"] * self.cap_hold * cell["dod_limit"])
+        self._last_cont_cells = n_cells
+        if n_cells_fixed is not None:
+            n_cells = n_cells_fixed
         m_batt = n_cells * cell["mass_kg"] * (1 + s["pack_overhead"])
         m_ins = ins["density_kgm3"] * A_m * ins["thickness_m"]
+        tp = s["thermal"]["payload_insulation_m"]
+        m_pay_ins = ins["density_kgm3"] * 6 * (0.12 + tp) ** 2 * tp   # 0.12 m payload box
         # masses
         st = c["structure"]
         m_wing_shell = st["wing_shell_kgm2"] * 2.04 * S
@@ -170,7 +180,7 @@ class SizingModel:
         m_prop = pi.get("prop_mass_kg", c["propeller"]["areal_mass_kg_per_m2_disk"] * _np.pi * D ** 2 / 4 + c["propeller"]["hub_kg"])
         m_wiring = c["wiring_fraction"] * (m_avion + m_motor + m_prop)
         m_struct = m_wing_shell + m_spar + m_tail + m_boom + m_pod
-        m_empty = m_struct + m_avion + m_motor + m_prop + m_wiring + m_ins
+        m_empty = m_struct + m_avion + m_motor + m_prop + m_wiring + m_ins + m_pay_ins
         m_margin = m["margins"]["empty_weight_margin"] * m_empty
         m_sum = m_empty + m_margin + fx["payload"]["mass_kg"] + m_batt
         # constraints g <= 0
@@ -185,12 +195,14 @@ class SizingModel:
             "pullout_alt": vs_rel ** 2 / (2 * G) - self.ds["sizing"]["pullout_alt_budget_m"],
             "loiter_speed_margin": CL - self.clmax3d / s["aero"]["loiter_min_speed_margin"] ** 2,
         }
+        if n_cells_fixed is not None:  # usable energy at the thermostat temperature must cover the requirement
+            cons["energy"] = (E_req - n_cells * cell["v_nom"] * cell["ah"] * self.cap_hold * cell["dod_limit"]) / 10.0
         return {"m_sum": m_sum, "cons": cons, "geo": geo, "loiter": lo, "top": top,
                 "masses": {"wing_shell": m_wing_shell, "wing_spar": m_spar, "tails": m_tail, "boom": m_boom,
                            "pod": m_pod, "avionics_fixed": m_avion, "motor": m_motor, "propeller": m_prop,
-                           "wiring": m_wiring, "insulation": m_ins, "battery": m_batt, "margin": m_margin,
+                           "wiring": m_wiring, "insulation": m_ins, "payload_insulation": m_pay_ins, "battery": m_batt, "margin": m_margin,
                            "payload": fx["payload"]["mass_kg"]},
-                "energy": {"E_req_wh": E_req, "E_heater_est_wh": E_heat, "n_cells_cont": n_cells,
+                "energy": {"E_req_wh": E_req, "E_noheat_wh": E_noheat, "E_heater_est_wh": E_heat, "n_cells_cont": n_cells,
                            "P_loiter_elec_w": P_loiter_elec, "P_loiter_shaft_w": lo["P"], "P_max_shaft_w": P_max_shaft,
                            "t_ascent_s": t_asc, "t_release_glide_s": t_rel, "t_loiter_s": t_loit, "t_descent_s": t_desc,
                            "R_th_kw": R, "box_area_m2": A_out, "heater_mis_w": P_h_mis},

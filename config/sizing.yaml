@@ -27,6 +27,9 @@ thermal:
   box_wall_gap_m: 0.005
   cell_d_m: 0.021
   cell_h_m: 0.070
-  payload_insulation_m: 0.010     # payload pod foam, for the payload thermal budget
+  payload_insulation_m: 0.020     # payload pod foam, for the payload thermal budget
 descent:
   quad_nodes: 40
+structure:
+  spar_min_cap_area_m2: 0.00002   # 20 mm^2 per cap minimum gauge (handling, ply drops, joints), ESTIMATE
+pack_series: 4                    # 4S Li-ion (14.4 V nominal); cell count rounded up to a multiple of this

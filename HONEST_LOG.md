@@ -100,3 +100,25 @@ XFOIL at Ncrit 5 vs UIUC Vol 3 (CD MAPE / CLa err / CLmax err):
 - D4 consequence: E387 is a validation foil, so sizing uses E387's own measured knockdown
   (k = 1.66 at 100k, 1.24 at 200k) as nominal; the two-foil mean is the optimistic band.
 - Tail section by the pre-registered rule: HT12 (lowest mean CD over |alpha| <= 4 deg at Re 30-50k).
+
+## 2026-11-18 P3 sizing results and notes
+
+- Grid (108,000 points, 2,778 feasible) 3.764 kg vs AeroSandbox Opti 3.746 kg: 0.50% apart (bar 2%).
+- Final closure with an integer 4S pack re-optimises the planform with the pack fixed: an earlier closure
+  held the planform fixed after rounding 16.x cells to 20 and violated MR-8 by 0.23 m/s. Fixed by
+  re-solving; final MTOW 4.067 kg, span 1.683 m, S 0.472 m^2, AR 6.0, 20 cells, W/S 84.5 N/m^2.
+- Active constraints: MR-8 stall (11.00 m/s EAS) and the D1 Re floor (Re 100,000). They meet at one wing
+  loading: the validated-Re constraint pinches the feasible region to a line.
+- The AR lower bound (6.0, design-practice floor in design_space.yaml) is active. Not widened: lower AR
+  only worsens loiter L/D (already 9.3, driven by E387's own measured 1.66x drag knockdown).
+- MR-9 strict NOT MET: max loiter Re reachable under every other constraint is 150,037 < 300,000.
+  Check 9 FAILS on this, as pre-declared.
+- Span 1.68 m is outside the 2-3 m plausibility band (MTOW 4.07 kg is inside 3-5 kg). Forced by the Re
+  floor plus the stall limit, not hardcoded.
+- MR-5 payload thermal: with 10 mm payload foam the payload box reached -22.9 C (< -20 C). Design change:
+  20 mm foam (config/sizing.yaml), foam mass added to the weight build-up; payload min now -9.4 C.
+- MR-10: cells stay >= -2.3 C, but the heater delivers only 0.007 Wh. The 20-cell heat capacity and I^2R
+  self-heating carry the pack. Check 10's "heater energy > 0" condition passes on a negligible value; the
+  substantive result is the cell temperature and the -37.7 C no-insulation counterfactual.
+- Spar: ideal carbon caps came out at about 4 mm^2 (28 g). A 20 mm^2 per-cap minimum gauge was added as a
+  stated assumption before the final run.

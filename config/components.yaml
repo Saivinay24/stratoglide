@@ -34,7 +34,7 @@ structure:                        # areal densities per WETTED area unless state
   tail_shell_kgm2: 0.30
   pod_shell_kgm2: 0.70
   boom_kg_per_m: 0.085            # carbon tube ~16 mm OD x 1 mm wall
-  carbon_ud: {rho_kgm3: 1550.0, sigma_allow_pa: 6.0e8, E_pa: 1.2e11}
+  carbon_ud: {rho_kgm3: 1550.0, sigma_allow_pa: 600000000.0, E_pa: 120000000000.0}
   source: ESTIMATE
   method: "areal densities from RC composite glider practice; carbon UD properties handbook class values with knockdown"
 pod:

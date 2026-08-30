@@ -184,6 +184,78 @@ def check7():
                                    f"selected {s['selected']}; Kendall tau top-3 min {min(s['kendall_tau_top3'].values()):.2f}")
 
 
+# ---------------------------------------------------------------- 8
+def check8():
+    s = read_json(_phase("p3", "sizing.json"))
+    b = _bars()["sizing"]
+    import csv
+    w = list(csv.DictReader(open(_phase("p3", "weights.csv"))))
+    tot = sum(float(r["mass_kg"]) for r in w)
+    e_sum = abs(tot / s["mtow_kg"] - 1)
+    res = s["mass_loop_residual_frac"]
+    wbrows = list(csv.DictReader(open(_phase("p4", "wb.csv")) if _exists("p4", "wb.csv") else open(_phase("p3", "wb.csv"))))
+    M = sum(float(r["mass_kg"]) for r in wbrows)
+    xcg = sum(float(r["mass_kg"]) * float(r["x_m"]) for r in wbrows) / M
+    e_wb = abs(M / s["mtow_kg"] - 1)
+    mf = ROOT / "outputs" / "geometry" / "stratoglide.mass"
+    if not mf.exists():
+        raise Skip(f"AVL .mass not written yet (P4); mass loop residual {res:.1e}, sum(weights) err {e_sum:.1e}")
+    rows = []
+    for ln in mf.read_text().splitlines():
+        t = ln.split("!")[0].split()
+        if len(t) >= 4 and not ln.strip().startswith(("#", "L", "M", "T", "g", "r")):
+            try:
+                rows.append([float(x) for x in t[:4]])
+            except ValueError:
+                pass
+    a = np.array(rows)
+    x_mass = float((a[:, 0] * a[:, 1]).sum() / a[:, 0].sum())
+    dcg = abs(x_mass - xcg)
+    ok = res <= b["mass_loop_tol_frac"] and e_sum <= b["mass_loop_tol_frac"] and e_wb <= b["mass_loop_tol_frac"] and dcg <= b["cg_match_m"]
+    return _pf(ok), (f"mass-loop residual {res:.1e}, sum(weights.csv) vs MTOW {e_sum:.1e}, sum(wb.csv) vs MTOW {e_wb:.1e} "
+                     f"(bar {b['mass_loop_tol_frac']}); CG wb.csv {xcg:.4f} m vs AVL .mass {x_mass:.4f} m, diff {1000*dcg:.2f} mm (bar 1 mm)")
+
+
+def _exists(phase, name):
+    try:
+        latest_phase_file(phase, name)
+        return True
+    except FileNotFoundError:
+        return False
+
+
+# ---------------------------------------------------------------- 9
+def check9():
+    s = read_json(_phase("p3", "sizing.json"))
+    m = load_cfg("mission")
+    b = _bars()["sizing"]
+    usable_ok = s["E_usable_wh"] >= s["E_required_noheat_wh"]
+    mr4 = usable_ok
+    mr7 = s["span_m"] <= m["ground"]["span_max_m"]
+    mr8 = s["vs_eas_sl"] <= m["handlaunch"]["stall_eas_max_mps"] + 1e-6
+    mr9 = s["mr9_strict_met"]
+    g, o = s["grid"]["mtow"], s["opti"].get("mtow")
+    agree = o is not None and abs(o / g - 1) <= b["opti_vs_grid_tol_frac"]
+    ok = mr4 and mr7 and mr8 and mr9 and agree
+    return _pf(ok), (f"MR-4 usable {s['E_usable_wh']:.1f} Wh >= need {s['E_required_noheat_wh']:.1f} Wh: {mr4}; MR-7 span "
+                     f"{s['span_m']:.3f} m: {mr7}; MR-8 Vs {s['vs_eas_sl']:.2f} m/s EAS: {mr8}; MR-9 Re {s['re_loiter']:.0f} >= "
+                     f"Re_min_validated {s['re_min_validated_strict']:.0f}: {mr9} (max reachable {s['grid']['max_re_other_constraints']:.0f}); "
+                     f"Opti {o:.3f} vs grid {g:.3f} kg ({100*abs(o/g-1):.2f}%, bar 2%)")
+
+
+# ---------------------------------------------------------------- 10
+def check10():
+    s = read_json(_phase("p3", "sizing.json"))
+    m = load_cfg("mission")
+    derate = s["E_usable_wh"] < s["E_nameplate_wh"]
+    heat = s["E_heater_wh"] > 0
+    tmin = s["cell_T_min_c"] >= m["thermal"]["cell_min_c"]
+    return _pf(derate and heat and tmin), (f"usable {s['E_usable_wh']:.1f} < nameplate {s['E_nameplate_wh']:.1f} Wh: {derate}; "
+                                           f"heater energy {s['E_heater_wh']:.3f} Wh > 0: {heat}; cell T min {s['cell_T_min_c']:.1f} C "
+                                           f">= {m['thermal']['cell_min_c']} C: {tmin} (no-insulation counterfactual "
+                                           f"{s['noinsulation_cell_T_min_c']:.1f} C)")
+
+
 def _stub(n):
     def f():
         raise Skip(f"check {n} not implemented yet (phase pending)")
