@@ -256,6 +256,71 @@ def check10():
                                            f"{s['noinsulation_cell_T_min_c']:.1f} C)")
 
 
+# ---------------------------------------------------------------- 11
+def check11():
+    st = read_json(_phase("p4", "stability.json"))
+    b = _bars()["stability"]
+    lo, hi = b["sm_pct"]
+    msgs, ok = [], True
+    for k in ("sl", "alt20"):
+        c = st["cases"][k]
+        d = c["derivs"]
+        good = lo <= c["sm_pct"] <= hi and d["Cma"] < 0 and d["Cnb"] > 0 and d["Clb"] < 0
+        ok &= good
+        msgs.append(f"{k}: SM {c['sm_pct']:.2f}% [{lo}-{hi}], Cma {d['Cma']:.3f}, Cnb {d['Cnb']:.4f}, Clb {d['Clb']:.4f}")
+    return _pf(ok), "; ".join(msgs)
+
+
+# ---------------------------------------------------------------- 12
+def check12():
+    st = read_json(_phase("p4", "stability.json"))
+    b = _bars()["stability"]
+    sl, hi = st["cases"]["sl"]["modes"], st["cases"]["alt20"]["modes"]
+    res = []
+
+    def add(name, cond, txt):
+        res.append((name, bool(cond), txt))
+    for tag, md in (("sl", sl), ("alt20", hi)):
+        sp = md["short_period"]["avl"]
+        add(f"SP zeta {tag}", sp["zeta"] >= b["sp_zeta_min"][tag], f"{sp['zeta']:.3f}>={b['sp_zeta_min'][tag]}")
+        dr = md["dutch_roll"]["avl"]
+        add(f"DR zeta {tag}", dr["zeta"] >= b["dr_zeta_min"][tag], f"{dr['zeta']:.3f}>={b['dr_zeta_min'][tag]}")
+        ph = md["phugoid"]["avl"]
+        stable = ph["re"] < 0
+        if b["phugoid"][tag] == "stable":
+            add(f"phugoid {tag}", stable, f"re {ph['re']:+.4f}")
+        else:
+            add(f"phugoid {tag}", stable or (ph["t_double_s"] or 0) >= b["phugoid_t2_min_s"],
+                f"re {ph['re']:+.4f}" + (f", T2 {ph['t_double_s']:.0f}s" if ph["t_double_s"] else ""))
+        spl = md["spiral"]["avl"]
+        add(f"spiral {tag}", spl["re"] < 0 or spl["t_double_s"] >= b["spiral_t2_min_s"],
+            "stable" if spl["re"] < 0 else f"T2 {spl['t_double_s']:.1f}s")
+    rl = sl["roll"]["avl"]["tau_s"]
+    add("roll tau sl", rl <= b["roll_tau_max_s"]["sl"], f"{rl:.3f}s<={b['roll_tau_max_s']['sl']}")
+    add("SP zeta drops with altitude", hi["short_period"]["avl"]["zeta"] < sl["short_period"]["avl"]["zeta"],
+        f"{hi['short_period']['avl']['zeta']:.3f}<{sl['short_period']['avl']['zeta']:.3f}")
+    tr = hi["phugoid"]["avl"]["period_s"] / sl["phugoid"]["avl"]["period_s"]
+    vr = st["cases"]["alt20"]["V_tas"] / st["cases"]["sl"]["V_tas"]
+    add("phugoid T ratio vs V ratio", abs(tr / vr - 1) <= b["phugoid_ratio_tol_frac"], f"{tr:.3f} vs {vr:.3f} ({100*abs(tr/vr-1):.1f}%)")
+    ok = all(c for _, c, _ in res)
+    return _pf(ok), "; ".join(f"{n} {t}{'' if c else ' FAIL'}" for n, c, t in res)
+
+
+# ---------------------------------------------------------------- 13
+def check13():
+    st = read_json(_phase("p4", "stability.json"))
+    b = _bars()["stability"]["avl_vs_asb"]
+    a = st["asb"]
+    if "cla_rel" not in a:
+        return "FAIL", f"AeroSandbox cross-check did not run: {a}"
+    cv = st["vlm_convergence"]
+    ok = a["cla_rel"] <= b["cla_rel"] and a["xnp_frac_mac"] <= b["xnp_frac_mac"]
+    return _pf(ok), (f"converged grids: CLa AVL {a['avl_CLa']:.3f} vs ASB {a['CLa']:.3f} ({100*a['cla_rel']:.2f}%, bar "
+                     f"{100*b['cla_rel']:.0f}%); Xnp AVL {a['avl_Xnp']:.4f} vs ASB {a['Xnp']:.4f} m "
+                     f"({100*a['xnp_frac_mac']:.2f}% MAC, bar {100*b['xnp_frac_mac']:.0f}%); last-step change AVL "
+                     f"{100*cv['avl_last_step_xnp_frac_mac']:.2f}% MAC, ASB {100*cv['asb_last_step_xnp_frac_mac']:.2f}% MAC")
+
+
 def _stub(n):
     def f():
         raise Skip(f"check {n} not implemented yet (phase pending)")

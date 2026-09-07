@@ -30,7 +30,7 @@ sizing:
   taper: 0.6
   oswald_e: 0.85                  # initial; AVL e replaces it after P4 (logged)
   tail_VH: 0.50
-  tail_VV: 0.035
+  tail_VV: 0.065   # P4 Dutch-roll trade (stability/dr_trade.py): 0.035 gave DR zeta 0.001 at 20 km
   tail_config: conventional_boom  # trade documented in P3/P4
   wing_dihedral_deg: 5.0
   pullout_alt_budget_m: 300.0     # free-fall altitude allowed to reach stall q at 25 km

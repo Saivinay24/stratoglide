@@ -1,32 +1,134 @@
 {
- "pass": 2,
- "fail": 1,
- "skip": 1,
- "total": 4,
+ "pass": 9,
+ "fail": 4,
+ "skip": 8,
+ "total": 21,
  "results": [
+  {
+   "n": 0,
+   "name": "pre-registration sha256 (bars.yaml, mission.yaml)",
+   "status": "PASS",
+   "msg": "bars.yaml match (329c66080aa0); mission.yaml match (3348d87014ae)"
+  },
+  {
+   "n": 1,
+   "name": "ISA vs USSA-1976 tabulated (geometric)",
+   "status": "PASS",
+   "msg": "max |err| 5.79e-05 over 22 tabulated points (0-35 km, incl. 0/20/25/30/32 km) vs bar 1e-03"
+  },
+  {
+   "n": 2,
+   "name": "mu(216.65 K), layer continuity, monotonic rho",
+   "status": "PASS",
+   "msg": "mu(216.65 K) err 9.20e-06 (bar 0.005); max layer-boundary jump 3.2e-13 (bar 1e-09); rho monotonic to 35 km True"
+  },
   {
    "n": 3,
    "name": "independent recompute of loiter Re, q, Mach",
    "status": "PASS",
-   "msg": "independent recompute at 19 km: V 47.75 m/s, q 118.5 Pa, Re 100000, M 0.162; max rel diff 0.0e+00 (bar 0.005)"
+   "msg": "independent recompute at 19 km: V 47.53 m/s, q 117.4 Pa, Re 100000, M 0.161; max rel diff 0.0e+00 (bar 0.005)"
+  },
+  {
+   "n": 4,
+   "name": "determinism: XFOIL + NeuralFoil re-run",
+   "status": "PASS",
+   "msg": "3 XFOIL + 3 NeuralFoil polars re-run uncached; max diff after rounding to 4 dp = 0"
+  },
+  {
+   "n": 5,
+   "name": "XFOIL vs UIUC LSAT at Re 100k/200k",
+   "status": "FAIL",
+   "msg": "design Ncrit 5; E387 100k CD 38.9% CLa 22.6% CLmax 0.030 (miss); E387 200k CD 19.5% CLa 6.1% CLmax 0.067 (miss); SD7037 100k CD 17.9% CLa 2.6% CLmax 0.070 (miss); SD7037 200k CD 5.5% CLa 2.0% CLmax 0.085; bars <=15%, <=10%, <=0.10"
+  },
+  {
+   "n": 6,
+   "name": "Re 60k result present; Re_min_validated defined",
+   "status": "SKIP",
+   "msg": "report not built yet (60k in validation.json True, HONEST_LOG True)"
+  },
+  {
+   "n": 7,
+   "name": "selection reproducible; Ncrit robustness",
+   "status": "PASS",
+   "msg": "recomputed winner S1223 == stored S1223: True; stable across Ncrit 7-12: False (flip logged: True); selected E387; Kendall tau top-3 min 0.33"
   },
   {
    "n": 8,
    "name": "mass loop converged; MTOW = sum(weights); CG match AVL .mass",
-   "status": "SKIP",
-   "msg": "AVL .mass not written yet (P4); mass loop residual 1.7e-11, sum(weights) err 9.3e-08"
+   "status": "PASS",
+   "msg": "mass-loop residual 6.2e-10, sum(weights.csv) vs MTOW 3.1e-07, sum(wb.csv) vs MTOW 7.1e-08 (bar 0.001); CG wb.csv 0.1329 m vs AVL .mass 0.1329 m, diff 0.00 mm (bar 1 mm)"
   },
   {
    "n": 9,
    "name": "design meets MR-4/7/8/9; Opti vs grid MTOW",
    "status": "FAIL",
-   "msg": "MR-4 usable 279.1 Wh >= need 221.3 Wh: True; MR-7 span 1.683 m: True; MR-8 Vs 11.00 m/s EAS: True; MR-9 Re 100000 >= Re_min_validated 300000: False (max reachable 150037); Opti 3.746 vs grid 3.764 kg (0.50%, bar 2%)"
+   "msg": "MR-4 usable 279.5 Wh >= need 230.5 Wh: True; MR-7 span 1.691 m: True; MR-8 Vs 11.00 m/s EAS: True; MR-9 Re 100000 >= Re_min_validated 300000: False (max reachable 153891); Opti 3.849 vs grid 3.867 kg (0.48%, bar 2%)"
   },
   {
    "n": 10,
    "name": "battery cold derate + heater + cell temperature",
    "status": "PASS",
-   "msg": "usable 279.1 < nameplate 352.8 Wh: True; heater energy 0.007 Wh > 0: True; cell T min -2.3 C >= -10.0 C: True (no-insulation counterfactual -37.7 C)"
+   "msg": "usable 279.5 < nameplate 352.8 Wh: True; heater energy 0.002 Wh > 0: True; cell T min -2.2 C >= -10.0 C: True (no-insulation counterfactual -37.2 C)"
+  },
+  {
+   "n": 11,
+   "name": "static stability SL and 20 km",
+   "status": "PASS",
+   "msg": "sl: SM 11.56% [8.0-15.0], Cma -0.548, Cnb 0.1440, Clb -0.1292; alt20: SM 11.56% [8.0-15.0], Cma -0.548, Cnb 0.1440, Clb -0.1292"
+  },
+  {
+   "n": 12,
+   "name": "dynamic modes vs bars; altitude physics direction",
+   "status": "FAIL",
+   "msg": "SP zeta sl 0.687>=0.3; DR zeta sl 0.214>=0.08; phugoid sl re -0.0584; spiral sl stable; SP zeta alt20 0.236>=0.15; DR zeta alt20 0.026>=0.02; phugoid alt20 re -0.0256; spiral alt20 stable; roll tau sl 0.051s<=1.0; SP zeta drops with altitude 0.236<0.687; phugoid T ratio vs V ratio 2.903 vs 3.712 (21.8%) FAIL"
+  },
+  {
+   "n": 13,
+   "name": "AVL vs AeroSandbox VLM",
+   "status": "FAIL",
+   "msg": "converged grids: CLa AVL 4.732 vs ASB 5.096 (7.14%, bar 5%); Xnp AVL 0.1662 vs ASB 0.1503 m (5.53% MAC, bar 2%); last-step change AVL 0.01% MAC, ASB 1295.85% MAC"
+  },
+  {
+   "n": 14,
+   "name": "JSBSim atmosphere; JSBSim vs own 6-DOF nominal",
+   "status": "SKIP",
+   "msg": "check 14 not implemented yet (phase pending)"
+  },
+  {
+   "n": 15,
+   "name": "release Monte Carlo bars",
+   "status": "SKIP",
+   "msg": "check 15 not implemented yet (phase pending)"
+  },
+  {
+   "n": 16,
+   "name": "energy sanity, motor off, all MC runs",
+   "status": "SKIP",
+   "msg": "check 16 not implemented yet (phase pending)"
+  },
+  {
+   "n": 17,
+   "name": "BEMT vs UIUC APC data; momentum bound",
+   "status": "SKIP",
+   "msg": "check 17 not implemented yet (phase pending)"
+  },
+  {
+   "n": 18,
+   "name": "variable pitch >= fixed pitch at every altitude",
+   "status": "SKIP",
+   "msg": "check 18 not implemented yet (phase pending)"
+  },
+  {
+   "n": 19,
+   "name": "glide range and endurance consistency",
+   "status": "SKIP",
+   "msg": "check 19 not implemented yet (phase pending)"
+  },
+  {
+   "n": 20,
+   "name": "build package, name checks, schema, lint, reproducibility",
+   "status": "SKIP",
+   "msg": "check 20 not implemented yet (phase pending)"
   }
  ]
 }

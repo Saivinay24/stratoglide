@@ -217,7 +217,8 @@ def main():
         "constraints": {k: float(v) for k, v in r["cons"].items()}, "grid": gr, "mass_loop_residual_frac": float(abs(r["m_sum"] - m) / m),
         "continuous_optimum": {"S": base["S"], "AR": base["AR"], "CL": base["CL"], "mtow": base["mtow"]}, "opti": op, "closure_iterations": iters,
         "re_min_validated_strict": M.re_min_validated, "re_floor_design": M.re_floor,
-        "mr9_strict_met": bool(lo["re"] >= M.re_min_validated), "polar_fit": {k: M.polar.fit[k] for k in ("rms_log", "max_rel_err", "n")},
+        "mr9_strict_met": bool(lo["re"] >= M.re_min_validated), "polar_fit": {k: M.polar.fit[k] for k in ("rms_log", "max_rel_err", "n")}, "polar_fit_coef": M.polar.fit["coef"],
+        "tail_cd": M.polar.tail_cd,
         "oswald_e": float(r["e"]), "w95_loiter_mps": M.w95_loiter, "v_bestld_tas_loiter": float(r["v_bestld_tas_loiter"]),
     }
     write_json(d / "sizing.json", sizing)

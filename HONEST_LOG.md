@@ -122,3 +122,23 @@ XFOIL at Ncrit 5 vs UIUC Vol 3 (CD MAPE / CLa err / CLmax err):
   substantive result is the cell temperature and the -37.7 C no-insulation counterfactual.
 - Spar: ideal carbon caps came out at about 4 mm^2 (28 g). A 20 mm^2 per-cap minimum gauge was added as a
   stated assumption before the final run.
+
+## 2026-11-18 P4 stability
+
+- Dutch-roll damping at 20 km was 0.001 with VV 0.035 (bar 0.02); the aft-CG case at 20 km was divergent.
+  Design change, not a bar change: stability/dr_trade.py swept VV x dihedral. The rule was smallest VV
+  meeting the bar with a stable spiral, and it selected VV 0.065 at 5 deg dihedral. P3 was re-sized:
+  MTOW 4.105 kg, span 1.691 m, L/D 8.90. 20 km DR zeta is now 0.026; at the aft CG it is stable.
+- Pitch trim: the battery cannot reach the target CG inside the pod, so the pod and every item mounted in it
+  shift +0.0235 m relative to the wing. SM is 11.56% MAC at every altitude.
+- Check 12 FAIL (honest): phugoid period ratio T(20 km)/T(SL) is 2.903 vs V_TAS ratio 3.712 (21.8%, bar 20%).
+  Every mode bar passes. The Lanchester T proportional to V scaling is approximate at mu ~670.
+- Check 13 FAIL (honest): AeroSandbox 4.2.10 VLM does not grid-converge on this geometry. Grids 12x8 / 30x12
+  / 50x16 / 80x20 give Xnp 0.1592 / 0.1635 / non-physical (CLa < 0) / 0.1503 m. AVL is converged (Xnp
+  0.1662 m, 0.01% MAC across 1.0-2.5x resolution; 3x overflows NVMAX=6000).
+  Hypothesis "tail in the wing wake plane" tested by stability/asb_diag.py: with the tail 0.15 m lower,
+  ASB still fails at 50x16, so the hypothesis is REJECTED. Root cause unknown. At 30x12 the codes agree
+  within the bars, but that is a post-hoc grid choice and is not used for the check.
+- AVL limitation: the pod is not modelled as a BODY, so its destabilising Cm_alpha and Cn_beta are absent.
+  AVL is linear and inviscid.
+- Flying-wing trade (same wing and CG, no tail): SM -13.1%, Cn_beta -0.0039. The tail is required.
