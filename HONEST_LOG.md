@@ -142,3 +142,29 @@ XFOIL at Ncrit 5 vs UIUC Vol 3 (CD MAPE / CLa err / CLmax err):
 - AVL limitation: the pod is not modelled as a BODY, so its destabilising Cm_alpha and Cn_beta are absent.
   AVL is linear and inviscid.
 - Flying-wing trade (same wing and CG, no tail): SM -13.1%, Cn_beta -0.0039. The tail is required.
+
+## 2026-11-18 P6 propulsion
+
+- BEMT (Ning-style phi residual, Prandtl tip/hub loss, NeuralFoil section table, Prandtl-Glauert + Korn wave
+  drag). APC section geometry is proprietary, so a stand-in section was chosen on a declared calibration prop
+  (APC 10x7, all RPMs) from {naca4412, clarky, naca6412, e63, sd7037} by the CT metric: e63. APC 9x6 and 10x5
+  are held out.
+- Check 17 FAIL (honest): held-out CT error up to 40.8% (9x6 at 5000 rpm; bar 10%). eta_peak error max 0.049
+  (bar 0.05) and eta <= momentum ideal everywhere both pass. The J trend is right; the CT level is model-form
+  error from the section stand-in at Re75 43k-67k. The section was NOT re-picked on the held-out props.
+- Bugs found and fixed before results were used: (1) tip Mach was read from the r = R element, where F -> 0
+  makes the induction meaningless (reported 0.10 at 19 km); it is now the geometric helical tip Mach (0.65 at
+  20 km). (2) The VP collective optimiser was local (VP < fixed pitch B at 10 and 15 km); it is now a 1-deg
+  grid scan plus a bounded refine.
+- Physics result: at constant EAS, rho V^2 is constant, so the required CT/J^2 is identical at every altitude.
+  Fixed pitch with free RPM loses only to blade Re and tip Mach. VP gain vs same-blade fixed pitch A is
+  1.04 points max (at sea level); vs B it is 3.05 points (at 20 km). The plan's "~15 points" target came from
+  a density-ratio argument, and the real number replaces it.
+- Check 18 was first written stricter than the plan (VP >= both A and B). Blade B has a different helical
+  twist, so collective on blade A falls 0.0001 short of B at 10 km. The check was aligned to the plan's
+  definition (same blade, a single FP design point); the B shortfall is still printed by the check.
+- Diameter trade hits its upper bound (0.45 m; eta still rising). Kept as a stated layout limit.
+- P3 <-> P6 iterated to convergence: MTOW 4.105 -> 3.760 kg, 16 cells (4S4P), prop D 0.45 m P/D 1.18,
+  motor AT2814 KV900 class (ESTIMATE catalog values), motor eta 0.81 at loiter. P4 re-run on this airframe:
+  SM 11.49%, 20 km DR zeta 0.021 (bar 0.02).
+- Winding temperature at low rho is not modelled (GAPS).

@@ -35,6 +35,8 @@ structure:                        # areal densities per WETTED area unless state
   pod_shell_kgm2: 0.70
   boom_kg_per_m: 0.085            # carbon tube ~16 mm OD x 1 mm wall
   carbon_ud: {rho_kgm3: 1550.0, sigma_allow_pa: 600000000.0, E_pa: 120000000000.0}
+  skin_torsion: {t_m: 0.00015, G_pa: 4000000000.0, source: ESTIMATE, method: "one +/-45 deg glass/carbon ply, handbook class shear modulus; used only by the P5 flutter screen"}
+  section_flutter: {ea_x_c: 0.30, cg_x_c: 0.42, r_alpha_sq: 0.25, g_struct: 0.0, source: ESTIMATE, method: "typical-section textbook class values for a foam-core wing with a spar near 30% chord"}
   source: ESTIMATE
   method: "areal densities from RC composite glider practice; carbon UD properties handbook class values with knockdown"
 pod:

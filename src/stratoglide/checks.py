@@ -321,6 +321,85 @@ def check13():
                      f"{100*cv['avl_last_step_xnp_frac_mac']:.2f}% MAC, ASB {100*cv['asb_last_step_xnp_frac_mac']:.2f}% MAC")
 
 
+# ---------------------------------------------------------------- 17
+def check17():
+    v = read_json(_phase("p6", "prop_validation.json"))
+    b = _bars()["prop"]
+    ct, ep, bound = v["ct_rel_max_heldout"], v["eta_peak_abs_max_heldout"], v["momentum_bound_ok"]
+    per = "; ".join(f"{p} {rpm} rpm CT {100*x['ct_rel']:.1f}% eta_pk {x['eta_peak_abs']:.3f} (Re75 {x['re75_mean']:.0f})"
+                    for p, h in v["held_out"].items() for rpm, x in h["per_rpm"].items())
+    ok = ct <= b["ct_rel_max"] and ep <= b["eta_peak_abs_max"] and bound
+    return _pf(ok), (f"held-out APC props, section {v['section']} (chosen on {v['calibration_prop']}): CT max {100*ct:.1f}% "
+                     f"(bar {100*b['ct_rel_max']:.0f}%), eta_peak max {ep:.3f} (bar {b['eta_peak_abs_max']}), "
+                     f"eta <= momentum ideal everywhere: {bound} | {per}")
+
+
+# ---------------------------------------------------------------- 18
+def check18():
+    p = read_json(_phase("p6", "prop.json"))
+    b = _bars()["prop"]
+    t = p["table"]
+    # plan definition: VP is the SAME blade as fixed pitch A plus a collective schedule; compare to A.
+    ge = all(r["eta_VP"] >= r["eta_A"] - 1e-9 for r in t)
+    vsB = [r["z_m"] for r in t if r["eta_VP"] < r["eta_B"] - 1e-9]
+    d19 = next(r for r in t if r["z_m"] == 19000.0)
+    d0 = next(r for r in t if r["z_m"] == 0.0)
+    eqA = abs(d19["eta_VP"] - d19["eta_A"]) <= b["vp_equal_tol"]
+    eqB = abs(d0["eta_VP"] - d0["eta_B"]) <= b["vp_equal_tol"] or d0["eta_VP"] >= d0["eta_B"]
+    g, za = p["vp_gain_eta_points_max"]
+    return _pf(ge and eqA), (f"VP >= same-blade fixed pitch A at all {len(t)} altitudes: {ge} (info: VP below blade B, a "
+                                     f"different twist, at {[int(z) for z in vsB]} m); at FP-A design point (19 km) "
+                                     f"VP {d19['eta_VP']:.4f} vs A {d19['eta_A']:.4f} (tol {b['vp_equal_tol']}): {eqA}; "
+                                     f"max VP gain vs A {g:.2f} points at {za/1000:.0f} km, vs B "
+                                     f"{p['vp_gain_vs_B_max'][0]:.2f} points at {p['vp_gain_vs_B_max'][1]/1000:.0f} km")
+
+
+# ---------------------------------------------------------------- 14
+def check14():
+    j = read_json(_phase("p5", "jsbsim_check.json"))
+    b = _bars()["release"]
+    a, nm = j["atmosphere"], j["nominal"]
+    ok = (a["rho_rel"] <= b["jsbsim_atmos_tol_frac"] and nm["jsbsim"]["recovered"] and nm["own"]["recovered"]
+          and nm["alt_lost_rel"] <= b["jsb_vs_own"]["alt_lost_rel"] and nm["peak_n_rel"] <= b["jsb_vs_own"]["peak_n_rel"])
+    return _pf(ok), (f"JSBSim rho(25 km) {a['rho_jsbsim']:.6f} vs own {a['rho_own']:.6f} ({a['rho_rel']:.1e}, bar "
+                     f"{b['jsbsim_atmos_tol_frac']}); nominal release (pitch {nm['pitch_deg']} deg): altitude lost JSBSim "
+                     f"{nm['jsbsim']['alt_lost_m']:.1f} vs own {nm['own']['alt_lost_m']:.1f} m ({100*nm['alt_lost_rel']:.1f}%, bar "
+                     f"{100*b['jsb_vs_own']['alt_lost_rel']:.0f}%); peak n {nm['jsbsim']['nz_max']:.3f} vs {nm['own']['nz_max']:.3f} g "
+                     f"({100*nm['peak_n_rel']:.1f}%, bar {100*b['jsb_vs_own']['peak_n_rel']:.0f}%)")
+
+
+# ---------------------------------------------------------------- 15
+def check15():
+    mc = read_json(_phase("p5", "release_mc.json"))
+    fl = read_json(_phase("p5", "flutter.json"))
+    b = _bars()["release"]
+    a, ps = mc["autopilot"], mc["passive"]
+    v_fl = fl["v_flutter_eas_min"]
+    eas_max = max(a["eas"]["max"], ps["eas"]["max"])
+    vne_fl = v_fl / b["flutter_margin"]
+    res = [("N", mc["N"] >= b["mc_n_min"], f"{mc['N']}>={b['mc_n_min']}"),
+           ("autopilot recovery", a["recovery_rate"] >= b["recovery_autopilot"], f"{100*a['recovery_rate']:.1f}%"),
+           ("passive recovery", ps["recovery_rate"] >= b["recovery_passive_min"], f"{100*ps['recovery_rate']:.1f}% (bar {100*b['recovery_passive_min']:.0f}%)"),
+           ("P99 Mach", a["mach"]["99"] <= b["mach_p99_max"], f"{a['mach']['99']:.3f}<={b['mach_p99_max']}"),
+           ("max n", a["nz"]["max"] <= b["n_max_g"], f"{a['nz']['max']:.2f}<={b['n_max_g']} g"),
+           ("peak EAS <= VNE", eas_max <= vne_fl and max(a["mach"]["max"], ps["mach"]["max"]) <= b["mach_p99_max"],
+            f"EAS {eas_max:.1f} <= {vne_fl:.1f} m/s and Mach max {max(a['mach']['max'], ps['mach']['max']):.3f} <= {b['mach_p99_max']}"),
+           ("flutter screen", v_fl >= b["flutter_margin"] * eas_max, f"{v_fl:.1f} >= {b['flutter_margin']} x {eas_max:.1f} m/s EAS")]
+    ok = all(c for _, c, _ in res)
+    return _pf(ok), "; ".join(f"{n} {t}{'' if c else ' FAIL'}" for n, c, t in res) + (
+        f"; passive gamma swing last 20 s P50 {ps.get('gamma_swing_last20s_deg', {}).get('50', float('nan')):.1f} deg (descriptive)")
+
+
+# ---------------------------------------------------------------- 16
+def check16():
+    mc = read_json(_phase("p5", "release_mc.json"))
+    b = _bars()["release"]
+    e = max(mc["autopilot"]["e_viol_max_wpkg"], mc["passive"]["e_viol_max_wpkg"])
+    n = 2 * mc["N"]
+    return _pf(e <= b["energy_dedt_max_wpkg"]), (f"max over {n} motor-off runs of d(V_air^2/2 + g h)/dt + wind-shear work = "
+                                                f"{e:.2e} W/kg (bar <= {b['energy_dedt_max_wpkg']:.0e})")
+
+
 def _stub(n):
     def f():
         raise Skip(f"check {n} not implemented yet (phase pending)")
