@@ -168,3 +168,31 @@ XFOIL at Ncrit 5 vs UIUC Vol 3 (CD MAPE / CLa err / CLmax err):
   motor AT2814 KV900 class (ESTIMATE catalog values), motor eta 0.81 at loiter. P4 re-run on this airframe:
   SM 11.49%, 20 km DR zeta 0.021 (bar 0.02).
 - Winding temperature at low rho is not modelled (GAPS).
+
+## 2026-11-18 P5 release and pull-out
+
+- Own vectorised 6-DOF (quaternion, RK4, dt 0.01 s) and JSBSim 1.3.3 share one aero model (aero_tables.py)
+  and one control law (autopilot.py). Deviation from the plan: the pull-out law runs in Python through the
+  JSBSim property tree each step instead of as an XML <system>, so both simulators fly the identical law.
+- Autopilot bugs found and fixed before the MC used for results: (1) a proportional-only pitch-rate loop left a
+  steady flight-path error (integral added); (2) yaw-damper sign inverted (AVL Cn_dr > 0) drove stalled
+  spirals; (3) gains were unscheduled, giving 5-13 ms closed-loop time constants at dive dynamic pressure,
+  comparable to the 10 ms control step. JSBSim showed a +/-100 deg/s roll limit cycle that RK4 had tolerated.
+  Fixed with EAS-scheduled gains, (V_ref/EAS)^2, V_ref = 1.3 Vs, set from target time constants; roll-angle hold
+  is gated off above |theta| 60 deg (Euler gimbal lock). The final MC was re-run on the corrected law.
+- MC N = 500 (LHS, seed 20261118). The plan's "blend width +/-3 deg" is interpreted as blend centre +/-3 deg plus
+  width 1-3 deg.
+  Autopilot: 100% recovered; P99 Mach 0.417; max n 2.70 g; altitude lost P50 841 m / P95 1065 m.
+- Check 15 FAIL (honest) on the passive case: 0% "recovered" (bar 95%). Every passive run pulls out (max Mach
+  0.460, max n 3.10 g), but the 20-25 km phugoid (zeta ~0.09, period ~25 s) is not inside |gamma - gamma_glide|
+  < 3 deg held 10 s within 120 s. Gamma swing in the last 20 s has P50 13.9 deg. The bare airframe is
+  statically safe but not "recovered" by the pre-registered definition.
+- JSBSim vs own nominal: altitude lost 826.6 vs 819.4 m (0.9%), peak n 2.42 vs 2.46 g (1.6%); JSBSim rho(25 km)
+  matches atmos.py to 2.0e-6.
+- Vertical-dive counterfactual (point mass, zero lift, locked nose-down): max Mach 0.698 (0.694 with the drag-rise
+  placeholder). The plan expected M > 1; with CD0 0.048 the terminal speed stays subsonic. The real number goes in.
+- Flutter screen (Theodorsen 2-DOF typical section, V-g, ESTIMATE skin/section values): min flutter speed
+  54.5 m/s EAS (at 25 km, where the flutter TAS is near M 1, outside incompressible Theodorsen validity,
+  flagged). Margin vs MC max EAS 27.4 m/s is 2.0x. Screening estimate, not clearance.
+- Energy sanity: max d(V_air^2/2 + g h)/dt + wind-shear work over 1000 runs = -2.0e-5 W/kg (dissipative).
+- Wind direction is assumed constant with altitude (IGRA percentiles carry speed only).
