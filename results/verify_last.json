@@ -1,26 +1,14 @@
 {
- "pass": 2,
+ "pass": 0,
  "fail": 1,
  "skip": 0,
- "total": 3,
+ "total": 1,
  "results": [
   {
-   "n": 14,
-   "name": "JSBSim atmosphere; JSBSim vs own 6-DOF nominal",
-   "status": "PASS",
-   "msg": "JSBSim rho(25 km) 0.040084 vs own 0.040084 (2.0e-06, bar 0.005); nominal release (pitch -80.0 deg): altitude lost JSBSim 826.6 vs own 819.4 m (0.9%, bar 15%); peak n 2.417 vs 2.457 g (1.6%, bar 10%)"
-  },
-  {
-   "n": 15,
-   "name": "release Monte Carlo bars",
+   "n": 19,
+   "name": "glide range and endurance consistency",
    "status": "FAIL",
-   "msg": "N 500>=500; autopilot recovery 100.0%; passive recovery 0.0% (bar 95%) FAIL; P99 Mach 0.417<=0.5; max n 2.70<=4.0 g; peak EAS <= VNE EAS 27.4 <= 45.4 m/s and Mach max 0.460 <= 0.5; flutter screen 54.5 >= 1.2 x 27.4 m/s EAS; passive gamma swing last 20 s P50 13.9 deg (descriptive)"
-  },
-  {
-   "n": 16,
-   "name": "energy sanity, motor off, all MC runs",
-   "status": "PASS",
-   "msg": "max over 1000 motor-off runs of d(V_air^2/2 + g h)/dt + wind-shear work = -2.03e-05 W/kg (bar <= 1e-03)"
+   "msg": "still-air glide 25 km -> deploy 239.6 km vs dh x L/D(mid altitude, 10.82) 252.9 km (5.3%, bar 5%); endurance vs usable Wh / P_elec max diff 0.00e+00% (bar 2%); MR-4 19 km endurance 35.5 min >= 30.0: True"
   }
  ]
 }

@@ -196,3 +196,17 @@ XFOIL at Ncrit 5 vs UIUC Vol 3 (CD MAPE / CLa err / CLmax err):
   flagged). Margin vs MC max EAS 27.4 m/s is 2.0x. Screening estimate, not clearance.
 - Energy sanity: max d(V_air^2/2 + g h)/dt + wind-shear work over 1000 runs = -2.0e-5 W/kg (dissipative).
 - Wind direction is assumed constant with altitude (IGRA percentiles carry speed only).
+
+## 2026-11-18 P7 mission performance
+
+- Same drag model and energy budget as P3 (SizingModel), P6 prop/motor efficiencies.
+- MR-4 met: loiter endurance 35.5 min at 19 km (39.6 at 18 km, 31.7 at 20 km) vs 30 min required.
+- Check 19 FAIL (honest): still-air glide range 25 km -> deploy is 239.6 km by quadrature of L/D_max(h) vs
+  252.9 km from dh x L/D at mid altitude (L/D 10.82): 5.3% apart, bar 5%. L/D_max falls from 11.9 (SL) to
+  8.9 (20 km) with Re, so the mid-altitude L/D is not the path average. The definition (mid-altitude L/D) was
+  fixed before the result and is not changed.
+- Return footprint from end of loiter (19 km, P95 winds, all layers aligned): downwind reach 513 km, into wind
+  24 km, crosswind tracks 75-105 deg infeasible (P95 jet-layer crosswind exceeds airspeed, so the track cannot
+  be held). Operator reading: the release point must not be crosswind of the recovery site in P95 conditions.
+- Induced drag uses the AVL span efficiency (0.99) because the CL-dependence of profile drag is already in the
+  section polar fit; this is not an Oswald factor.

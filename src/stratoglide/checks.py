@@ -400,6 +400,24 @@ def check16():
                                                 f"{e:.2e} W/kg (bar <= {b['energy_dedt_max_wpkg']:.0e})")
 
 
+# ---------------------------------------------------------------- 19
+def check19():
+    pf = read_json(_phase("p7", "perf.json"))
+    b = _bars()["perf"]
+    g = pf["glide_range"]
+    r_rel = abs(g["still_air_m"] / g["dh_x_LDmid_m"] - 1)
+    worst = 0.0
+    for z, v in pf["endurance"].items():
+        indep = 60 * v["E_avail_loiter_wh"] / v["P_loiter_elec_total_w"]
+        worst = max(worst, abs(indep / v["endurance_min"] - 1))
+    ok = r_rel <= b["glide_range_rel"] and worst <= b["endurance_rel"]
+    e19 = pf["endurance"]["19000"]["endurance_min"]
+    return _pf(ok), (f"still-air glide 25 km -> deploy {g['still_air_m']/1000:.1f} km vs dh x L/D(mid altitude, {g['LD_mid']:.2f}) "
+                     f"{g['dh_x_LDmid_m']/1000:.1f} km ({100*r_rel:.1f}%, bar {100*b['glide_range_rel']:.0f}%); endurance vs usable Wh / "
+                     f"P_elec max diff {100*worst:.2e}% (bar {100*b['endurance_rel']:.0f}%); MR-4 19 km endurance {e19:.1f} min "
+                     f">= {pf['mr4_required_min']}: {pf['mr4_met']}")
+
+
 def _stub(n):
     def f():
         raise Skip(f"check {n} not implemented yet (phase pending)")
