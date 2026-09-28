@@ -1,0 +1,24 @@
+# BOM unit prices in INR. ALL ESTIMATE: Indian hobby / composite retail class prices, NOT fetched from vendor pages
+# (no URL or retrieval date exists, so none is claimed). bom.py totals them; the sourced share is reported as 0%.
+method: "class unit price from Indian hobby retail (Robu.in / Robokits / ThinkRobotics / local composite suppliers) as of 2026, not fetched"
+items:
+  wing_shell:         {spec: "XPS foam core + 1 ply glass/carbon skin, per wing set", qty: 1, inr: 6000, vendor_class: "local composite supplier"}
+  wing_spar:          {spec: "UD carbon strip caps 2 x 20 mm^2 + shear web", qty: 1, inr: 1800, vendor_class: "local composite supplier"}
+  tails:              {spec: "foam-core tail surfaces, HT12 section", qty: 1, inr: 2500, vendor_class: "local composite supplier"}
+  boom:               {spec: "carbon tube 16 mm OD x 1 mm", qty: 1, inr: 1200, vendor_class: "Robu.in class"}
+  pod:                {spec: "glass/carbon pod shell 0.70 x 0.13 m", qty: 1, inr: 4500, vendor_class: "local composite supplier"}
+  flight_controller:  {spec: "H743 wing-class flight controller", qty: 1, inr: 9000, vendor_class: "Robu.in class"}
+  gnss:               {spec: "u-blox M10 GNSS + compass", qty: 1, inr: 3500, vendor_class: "Robu.in class"}
+  airspeed_sensor:    {spec: "digital differential-pressure sensor + pitot (see sensor check)", qty: 1, inr: 3500, vendor_class: "Robu.in class"}
+  telemetry:          {spec: "900 MHz telemetry radio pair", qty: 1, inr: 6000, vendor_class: "Robu.in class"}
+  servos:             {spec: "12 g digital micro servo, cold-rated class", qty: 5, inr: 900, vendor_class: "Robokits class"}
+  parachute_release:  {spec: "0.9 m ripstop parachute + release servo + bay", qty: 1, inr: 3000, vendor_class: "local"}
+  esc:                {spec: "40 A ESC", qty: 1, inr: 2200, vendor_class: "Robu.in class"}
+  heater:             {spec: "polyimide film heater + thermostat MOSFET", qty: 1, inr: 800, vendor_class: "Robu.in class"}
+  motor:              {spec: "selected motor (P6)", qty: 1, inr: 6500, vendor_class: "Robu.in class"}
+  propeller:          {spec: "carbon folding propeller 0.45 m class + hub/spinner", qty: 1, inr: 3500, vendor_class: "Robu.in class"}
+  battery_cell:       {spec: "21700 NMC 4.9 Ah class cell", qty_from: n_cells, inr: 550, vendor_class: "Robu.in class"}
+  bms_holder:         {spec: "4S BMS, nickel strip, cell holders", qty: 1, inr: 1200, vendor_class: "Robu.in class"}
+  insulation:         {spec: "closed-cell foam battery and payload boxes", qty: 1, inr: 600, vendor_class: "local"}
+  wiring:             {spec: "silicone wire, connectors, servo leads", qty: 1, inr: 1500, vendor_class: "Robu.in class"}
+  payload:            {spec: "EO gimbal payload, 1 kg (customer-furnished, excluded from airframe total)", qty: 1, inr: 0, vendor_class: "customer-furnished"}

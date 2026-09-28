@@ -33,7 +33,7 @@ def samples(N):
     return dict(zip(NAMES, (lo + u * (hi - lo)).T))
 
 
-def build(N):
+def build(N, z0=None):
     s = samples(N)
     p0 = aero_tables.nominal()
     p = dict(p0)
@@ -51,7 +51,7 @@ def build(N):
     use95 = s["wind_pct"] >= 0.5
     speeds = np.where(use95[:, None], p95[None, :], p50[None, :])
     wind = sd.Wind(zs, speeds, s["wind_dir"] * D2R)
-    z0 = load_cfg("mission")["release"]["alt_m"]
+    z0 = load_cfg("mission")["release"]["alt_m"] if z0 is None else z0
     X0 = np.zeros((N, 13))
     X0[:, 2] = -z0
     X0[:, 6:10] = sd.euler2q(s["roll"] * D2R, s["pitch"] * D2R, s["yaw"] * D2R)

@@ -133,5 +133,11 @@ class Numbers:
         return value
 
     def save(self):
-        write_json(phase_dir(self.phase) / "numbers.json", self.items)
+        """Merge into the phase file: keys previously written by THIS script are replaced, other scripts' keys kept
+        (several scripts share one phase; a plain overwrite silently dropped earlier scripts' numbers)."""
+        f = phase_dir(self.phase) / "numbers.json"
+        cur = read_json(f) if f.exists() else {}
+        cur = {k: v for k, v in cur.items() if v.get("script") != self.script}
+        cur.update(self.items)
+        write_json(f, cur)
         return self.items

@@ -210,3 +210,20 @@ XFOIL at Ncrit 5 vs UIUC Vol 3 (CD MAPE / CLa err / CLmax err):
   be held). Operator reading: the release point must not be crosswind of the recovery site in P95 conditions.
 - Induced drag uses the AVL span efficiency (0.99) because the CL-dependence of profile drag is already in the
   section polar fit; this is not an Oswald factor.
+
+## 2026-11-18 P8 build package
+
+- CadQuery: wing halves and tails lofted from airfoil coordinates, pod as a capped loft (a revolve with an edge on
+  the axis gave a non-watertight pole in the STL), boom tube. 7/7 parts watertight; STEP re-imports 7 solids;
+  mesh span matches geometry.json to 8.5e-9 and planform area to 0.36% (bar 1%).
+- BOM: INR 70,600 airframe total (payload excluded). 100% ESTIMATE: unit prices are class values in
+  config/bom_prices.yaml, not fetched from vendors, so no URLs or retrieval dates are claimed. Sourced share 0%.
+- ArduPlane starter params: 21 names, all present in apm.pdef.xml (renamed variants chosen from the file).
+  AIRSPEED_MAX 26 m/s EAS is the minimum over 0-25 km of VNE(h); at 25 km the Mach 0.5 limit governs, not
+  flutter. Airspeed sensors covering 535 Pa range and 1.72 Pa resolution: MS4525DO, SDP33, DLVR-L10D class
+  (SDP31's 500 Pa range is short).
+- Test cards FT-1..FT-6: 25 schema-valid predictions, each keyed to numbers.json. FT-5 (2 km AGL) and FT-6 (10 km)
+  bands come from 100-sample MCs at those altitudes (100% recovered both).
+- Provenance bug fixed: Numbers.save() overwrote the phase file, so with several scripts per phase the last
+  writer silently dropped earlier numbers (P5 lost JSBSim/flutter keys, P6 lost BEMT validation keys). save()
+  now merges, replacing only keys from the same script; affected scripts were re-run.

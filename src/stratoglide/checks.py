@@ -418,6 +418,61 @@ def check19():
                      f">= {pf['mr4_required_min']}: {pf['mr4_met']}")
 
 
+# ---------------------------------------------------------------- 20
+EM = "\u2014"
+OUTWARD = ["README.md", "outputs/report/StratoGlide_Report.html", "outputs/BOM.md", "app/static/index.html",
+           "site/index.html", "outputs/RESUME_CONTRACT.md"]
+
+
+def check20():
+    import json as _j
+    import re as _re
+    res = []
+    cad = read_json(_phase("p8", "cad.json"))
+    stp = ROOT / cad["step"]
+    wt = all(v["watertight"] for v in cad["parts"].values())
+    res.append(("STEP+STL", stp.exists() and cad["step_reimport_solids"] == len(cad["parts"]) and wt,
+                f"STEP {stp.exists()}, re-import {cad['step_reimport_solids']}/{len(cad['parts'])} solids, watertight {wt}"))
+    b = _bars()["build"]["mesh_rel"]
+    res.append(("mesh vs geometry", cad["span_rel"] <= b and cad["area_rel"] <= b,
+                f"span {100*cad['span_rel']:.2e}%, area {100*cad['area_rel']:.2f}% (bar {100*b:.0f}%)"))
+    pdef = (ROOT / "data/validation/apm.pdef.xml").read_text()
+    valid = set(_re.findall(r'name="ArduPlane:([A-Z0-9_]+)"', pdef)) | set(_re.findall(r'name="([A-Z0-9_]+)"', pdef))
+    names = [ln.split(",")[0] for ln in (ROOT / "outputs/stratoglide_starter.param").read_text().splitlines()
+             if ln and not ln.startswith("#")]
+    bad = [x for x in names if x not in valid]
+    res.append(("ArduPlane names", not bad, f"{len(names)} params, invalid {bad}"))
+    import jsonschema
+    P = _j.loads((ROOT / "outputs/test_cards/predictions.json").read_text())
+    sch = _j.loads((ROOT / "schemas/predictions.schema.json").read_text())
+    nums = read_json(RESULTS / "numbers.json")["numbers"]
+    try:
+        jsonschema.validate(P, sch)
+        sv = True
+    except jsonschema.ValidationError:
+        sv = False
+    miss = [p["numbers_key"] for p in P if p["numbers_key"] not in nums or abs(float(nums[p["numbers_key"]]["value"]) - p["value"]) > 1e-9 * max(1, abs(p["value"]))]
+    res.append(("predictions", sv and not miss, f"schema {sv}, {len(P)} values, unkeyed/mismatched {miss[:5]}"))
+    lint = RESULTS / "lint_report.json"
+    if lint.exists():
+        L = read_json(lint)
+        res.append(("report numbers traceable", L["untraceable"] == 0, f"{L['n_tokens']} numeric tokens, untraceable {L['untraceable']}"))
+    else:
+        res.append(("report numbers traceable", False, "lint_report.json missing (P9)"))
+    files = OUTWARD + [str(x.relative_to(ROOT)) for x in sorted((ROOT / "outputs/test_cards").glob("*.md"))]
+    missing = [f for f in files if not (ROOT / f).exists()]
+    em = [f for f in files if (ROOT / f).exists() and EM in (ROOT / f).read_text()]
+    res.append(("no em dashes", not em and not missing, f"{len(files)} outward files, with U+2014 {em}, missing {missing}"))
+    rp = RESULTS / "repro.json"
+    if rp.exists():
+        R = read_json(rp)
+        res.append(("clean-clone reproduces hash", R.get("match") is True, f"clean {R.get('clean_hash','')[:12]} vs repo {R.get('repo_hash','')[:12]}"))
+    else:
+        res.append(("clean-clone reproduces hash", False, "repro.json missing (P9)"))
+    ok = all(c for _, c, _ in res)
+    return _pf(ok), "; ".join(f"{n}: {t}{'' if c else ' FAIL'}" for n, c, t in res)
+
+
 def _stub(n):
     def f():
         raise Skip(f"check {n} not implemented yet (phase pending)")

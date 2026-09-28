@@ -1,0 +1,25 @@
+# StratoGlide ArduPlane starter parameters
+# starter values from StratoGlide predictions, NOT flight-tuned
+# names checked against apm.pdef.xml (apm.pdef.xml, retrieval date in data/validation/MANIFEST.csv)
+# all airspeeds are EAS (ArduPilot converts with EAS2TAS at altitude)
+AIRSPEED_MIN,14.0    # 1.2 x stall EAS (P3)
+AIRSPEED_CRUISE,15.8    # 1.1 x best-L/D EAS at 19 km (P7)
+AIRSPEED_MAX,26.0    # min over 0-25 km of VNE(h) = min(flutter-screen EAS / 1.2, Mach 0.5 as EAS) (P5)
+ARSPD_USE,1    # use airspeed for TECS and stall prevention
+ARSPD_TYPE,0    # PLACEHOLDER: set to the fitted sensor type (see sensor check)
+PTCH_LIM_MAX_DEG,20    # generic starter
+PTCH_LIM_MIN_DEG,-25    # generic starter
+ROLL_LIMIT_DEG,45    # generic starter
+STALL_PREVENTION,1    # on
+TECS_CLMB_MAX,5.0    # SL full-power climb rate (P7 excess power / W), capped 5
+TECS_SINK_MIN,1.08    # SL min sink (P7)
+TECS_SINK_MAX,1.08    # SL sink at AIRSPEED_MAX (P7 polar)
+TECS_TIME_CONST,5.0    # default-class starter
+SERVO1_FUNCTION,4    # aileron
+SERVO2_FUNCTION,19    # elevator
+SERVO3_FUNCTION,70    # throttle
+SERVO4_FUNCTION,21    # rudder
+SERVO1_REVERSED,0    # PLACEHOLDER: set on the bench
+SERVO2_REVERSED,0    # PLACEHOLDER: set on the bench
+SERVO4_REVERSED,0    # PLACEHOLDER: set on the bench
+THR_MAX,100    # full throttle allowed; motor limits per P6

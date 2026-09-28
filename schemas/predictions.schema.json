@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StratoGlide flight-test predictions",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "card",
+      "quantity",
+      "value",
+      "unit",
+      "band_lo",
+      "band_hi",
+      "source_script",
+      "numbers_key"
+    ],
+    "properties": {
+      "card": {
+        "type": "string",
+        "pattern": "^FT-[1-6]$"
+      },
+      "quantity": {
+        "type": "string"
+      },
+      "value": {
+        "type": "number"
+      },
+      "unit": {
+        "type": "string"
+      },
+      "band_lo": {
+        "type": "number"
+      },
+      "band_hi": {
+        "type": "number"
+      },
+      "source_script": {
+        "type": "string"
+      },
+      "numbers_key": {
+        "type": "string"
+      }
+    }
+  }
+}

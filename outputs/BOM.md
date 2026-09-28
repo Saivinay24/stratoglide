@@ -1,0 +1,30 @@
+# StratoGlide bill of materials
+
+All prices are ESTIMATE: class unit prices from Indian hobby and composite retail, not fetched from vendor pages, so no URL or retrieval date is claimed. Masses come from the P3 weight build-up.
+
+| Item | Spec | Qty | Mass (kg) | Vendor class | Unit (INR) | Total (INR) | Price |
+|---|---|---|---|---|---|---|---|
+| wing_shell | XPS foam core + 1 ply glass/carbon skin, per wing set | 1 | 0.3561 | local composite supplier | 6000 | 6000 | ESTIMATE |
+| wing_spar | UD carbon strip caps 2 x 20 mm^2 + shear web | 1 | 0.0722 | local composite supplier | 1800 | 1800 | ESTIMATE |
+| tails | foam-core tail surfaces, HT12 section | 1 | 0.0954 | local composite supplier | 2500 | 2500 | ESTIMATE |
+| boom | carbon tube 16 mm OD x 1 mm | 1 | 0.05 | Robu.in class | 1200 | 1200 | ESTIMATE |
+| pod | glass/carbon pod shell 0.70 x 0.13 m | 1 | 0.1701 | local composite supplier | 4500 | 4500 | ESTIMATE |
+| flight_controller | H743 wing-class flight controller | 1 | 0.035 | Robu.in class | 9000 | 9000 | ESTIMATE |
+| gnss | u-blox M10 GNSS + compass | 1 | 0.02 | Robu.in class | 3500 | 3500 | ESTIMATE |
+| airspeed_sensor | digital differential-pressure sensor + pitot (see sensor check) | 1 | 0.012 | Robu.in class | 3500 | 3500 | ESTIMATE |
+| telemetry | 900 MHz telemetry radio pair | 1 | 0.03 | Robu.in class | 6000 | 6000 | ESTIMATE |
+| servos | 12 g digital micro servo, cold-rated class | 5 | 0.06 | Robokits class | 900 | 4500 | ESTIMATE |
+| parachute_release | 0.9 m ripstop parachute + release servo + bay | 1 | 0.12 | local | 3000 | 3000 | ESTIMATE |
+| esc | 40 A ESC | 1 | 0.025 | Robu.in class | 2200 | 2200 | ESTIMATE |
+| heater | polyimide film heater + thermostat MOSFET | 1 | 0.015 | Robu.in class | 800 | 800 | ESTIMATE |
+| motor | selected motor (P6): T-Motor AT2814 KV900 (class) | 1 | 0.107 | Robu.in class | 6500 | 6500 | ESTIMATE |
+| propeller | carbon folding propeller 0.45 m class + hub/spinner | 1 | 0.0598 | Robu.in class | 3500 | 3500 | ESTIMATE |
+| battery_cell | 21700 NMC 4.9 Ah class cell | 16 | 1.104 | Robu.in class | 550 | 8800 | ESTIMATE |
+| bms_holder | 4S BMS, nickel strip, cell holders | 1 |  | Robu.in class | 1200 | 1200 | ESTIMATE |
+| insulation | closed-cell foam battery and payload boxes | 1 | 0.0713 | local | 600 | 600 | ESTIMATE |
+| wiring | silicone wire, connectors, servo leads | 1 | 0.0242 | Robu.in class | 1500 | 1500 | ESTIMATE |
+| payload | EO gimbal payload, 1 kg (customer-furnished, excluded from airframe total) | 1 | 1.0 | customer-furnished | 0 | 0 | ESTIMATE |
+
+**Total (airframe, payload excluded): INR 70600** (sourced INR 0, estimated INR 70600, sourced share 0%)
+
+Method: class unit price from Indian hobby retail (Robu.in / Robokits / ThinkRobotics / local composite suppliers) as of 2026, not fetched.
