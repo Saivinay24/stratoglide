@@ -9,6 +9,7 @@ Regulatory note on every card: drops need DGCA Digital Sky / airspace permission
 from __future__ import annotations
 
 import json
+import re
 
 import numpy as np
 
@@ -104,6 +105,11 @@ def main():
             P.append(pred(card, nm, f"p8.{tag}_{q}_p50", u, lo_key=f"p8.{tag}_{q}_p05", hi_key=f"p8.{tag}_{q}_p95"))
     import jsonschema
     jsonschema.validate(P, SCHEMA)
+    nb2 = Numbers("p8", "src/stratoglide/build/test_cards.py#bands")
+    for p in P:
+        slug = p["card"].replace("-", "").lower() + "_" + re.sub(r"[^a-z0-9]+", "_", p["quantity"].lower()).strip("_")
+        nb2.add(f"band_{slug}_lo", p["band_lo"], p["unit"]); nb2.add(f"band_{slug}_hi", p["band_hi"], p["unit"])
+    nb2.save()
     tc = OUTPUTS / "test_cards"
     tc.mkdir(parents=True, exist_ok=True)
     (ROOT / "schemas").mkdir(exist_ok=True)
@@ -134,7 +140,8 @@ def main():
               f"(static margin {gv('p4.sm_pct_sl'):.2f}% MAC).", "", "**Procedure:**", ""]
         md += [f"{i + 1}. {s}" for i, s in enumerate(proc)]
         md += ["", "**Predicted values (band):**", "", "| Quantity | Predicted | Band | Unit | numbers.json key |", "|---|---|---|---|---|"]
-        md += [f"| {p['quantity']} | {p['value']:.4g} | {p['band_lo']:.4g} to {p['band_hi']:.4g} | {p['unit']} | `{p['numbers_key']}` |" for p in rows]
+        g4 = lambda x: f"{float(f'{x:.6g}'):.4g}"  # round from the 6-sig-fig value numbers.json stores
+        md += [f"| {p['quantity']} | {g4(p['value'])} | {g4(p['band_lo'])} to {g4(p['band_hi'])} | {p['unit']} | `{p['numbers_key']}` |" for p in rows]
         md += ["", "**Abort criteria:**", ""] + [f"- {a}" for a in ABORT]
         md += ["", "**Data to log (ArduPilot DataFlash):** " + ", ".join(logs)]
         (tc / f"{card}.md").write_text("\n".join(md) + "\n")

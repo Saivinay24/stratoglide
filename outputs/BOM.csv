@@ -14,7 +14,7 @@ esc,40 A ESC,1,0.025,Robu.in class,2200,2200,,,ESTIMATE
 heater,polyimide film heater + thermostat MOSFET,1,0.015,Robu.in class,800,800,,,ESTIMATE
 motor,selected motor (P6): T-Motor AT2814 KV900 (class),1,0.107,Robu.in class,6500,6500,,,ESTIMATE
 propeller,carbon folding propeller 0.45 m class + hub/spinner,1,0.0598,Robu.in class,3500,3500,,,ESTIMATE
-battery_cell,21700 NMC 4.9 Ah class cell,16,1.104,Robu.in class,550,8800,,,ESTIMATE
+battery_cell,INR21700 NMC 4.9 Ah class cell,16,1.104,Robu.in class,550,8800,,,ESTIMATE
 bms_holder,"4S BMS, nickel strip, cell holders",1,,Robu.in class,1200,1200,,,ESTIMATE
 insulation,closed-cell foam battery and payload boxes,1,0.0713,local,600,600,,,ESTIMATE
 wiring,"silicone wire, connectors, servo leads",1,0.0242,Robu.in class,1500,1500,,,ESTIMATE

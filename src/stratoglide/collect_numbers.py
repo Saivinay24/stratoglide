@@ -44,6 +44,19 @@ def main():
                            "inputs_sha": sha256_file(CONFIG / f"{name}.yaml")[:16]}
     nums["mission.release_alt_m"] = nums["mission.release.alt_m"]
     nums["bars.validation_re"] = nums.get("bars.airfoil.validation_re", nums.get("bars.validation.re", {"value": [100000, 200000], "unit": "input", "script": "config/bars.yaml"}))
+    # derived headline values (computed here, so they carry this script as provenance)
+    def drv(key, value, unit, note):
+        nums[f"derived.{key}"] = {"value": value, "unit": unit, "script": "src/stratoglide/collect_numbers.py", "note": note}
+    cands = {k: nums[k]["value"] for k in ("p2.cd_mape_E387_re100k", "p2.cd_mape_E387_re200k",
+                                           "p2.cd_mape_SD7037_re100k", "p2.cd_mape_SD7037_re200k") if k in nums}
+    if cands:
+        worst = max(cands, key=cands.get)
+        drv("cd_mape_re100k_200k_worst", cands[worst], "-", f"worst of E387/SD7037 at Re 100k and 200k: {worst}")
+        best = min(cands, key=cands.get)
+        drv("cd_mape_re100k_200k_best", cands[best], "-", f"best of E387/SD7037 at Re 100k and 200k: {best}")
+    if "p3.mtow_grid_kg" in nums:
+        g, o = nums["p3.mtow_grid_kg"]["value"], nums["p3.mtow_opti_kg"]["value"]
+        drv("opti_vs_grid_pct", 100 * abs(o / g - 1), "%", "continuous optimum, Opti vs grid")
     out = {"values_sha256": values_hash(nums), "n": len(nums), "sources": src, "numbers": nums}
     RESULTS.mkdir(parents=True, exist_ok=True)
     write_json(RESULTS / "numbers.json", out)

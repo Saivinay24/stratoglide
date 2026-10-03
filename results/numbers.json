@@ -1,6 +1,6 @@
 {
- "values_sha256": "f02d81f0ebc31b5cd1264c016f9d0a4564f6015597535f7b6c4e86a4142ec171",
- "n": 635,
+ "values_sha256": "e31dfd957ae2294039e66314a3a18cddbbc153baa37e2a0b51b65966d0fd9b5b",
+ "n": 727,
  "sources": {
   "p1": "/Users/saivinay/Desktop/stratoglide/runs/20261117T203703Z-88e6d46/p1/numbers.json",
   "p2": "/Users/saivinay/Desktop/stratoglide/runs/20261117T203703Z-88e6d46/p2/numbers.json",
@@ -4130,7 +4130,7 @@
    "value": 70600,
    "unit": "INR",
    "script": "src/stratoglide/build/bom.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4138,7 +4138,7 @@
    "value": 0.0,
    "unit": "%",
    "script": "src/stratoglide/build/bom.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4146,7 +4146,319 @@
    "value": 20,
    "unit": "-",
    "script": "src/stratoglide/build/bom.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_wing_shell_total_inr": {
+   "value": 6000,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_wing_shell_mass_kg": {
+   "value": 0.3561,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_wing_spar_total_inr": {
+   "value": 1800,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_wing_spar_mass_kg": {
+   "value": 0.0722,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_tails_total_inr": {
+   "value": 2500,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_tails_mass_kg": {
+   "value": 0.0954,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_boom_total_inr": {
+   "value": 1200,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_boom_mass_kg": {
+   "value": 0.05,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_pod_total_inr": {
+   "value": 4500,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_pod_mass_kg": {
+   "value": 0.1701,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_flight_controller_total_inr": {
+   "value": 9000,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_flight_controller_mass_kg": {
+   "value": 0.035,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_gnss_total_inr": {
+   "value": 3500,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_gnss_mass_kg": {
+   "value": 0.02,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_airspeed_sensor_total_inr": {
+   "value": 3500,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_airspeed_sensor_mass_kg": {
+   "value": 0.012,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_telemetry_total_inr": {
+   "value": 6000,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_telemetry_mass_kg": {
+   "value": 0.03,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_servos_total_inr": {
+   "value": 4500,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_servos_mass_kg": {
+   "value": 0.06,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_parachute_release_total_inr": {
+   "value": 3000,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_parachute_release_mass_kg": {
+   "value": 0.12,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_esc_total_inr": {
+   "value": 2200,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_esc_mass_kg": {
+   "value": 0.025,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_heater_total_inr": {
+   "value": 800,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_heater_mass_kg": {
+   "value": 0.015,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_motor_total_inr": {
+   "value": 6500,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_motor_mass_kg": {
+   "value": 0.107,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_propeller_total_inr": {
+   "value": 3500,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_propeller_mass_kg": {
+   "value": 0.0598,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_battery_cell_total_inr": {
+   "value": 8800,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_battery_cell_mass_kg": {
+   "value": 1.104,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_bms_holder_total_inr": {
+   "value": 1200,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_insulation_total_inr": {
+   "value": 600,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_insulation_mass_kg": {
+   "value": 0.0713,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_wiring_total_inr": {
+   "value": 1500,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_wiring_mass_kg": {
+   "value": 0.0242,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_payload_total_inr": {
+   "value": 0,
+   "unit": "INR",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.bom_payload_mass_kg": {
+   "value": 1.0,
+   "unit": "kg",
+   "script": "src/stratoglide/build/bom.py",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4154,7 +4466,7 @@
    "value": 1.0,
    "unit": "-",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4162,7 +4474,7 @@
    "value": 40.4492,
    "unit": "m",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4170,7 +4482,7 @@
    "value": 27.4686,
    "unit": "m",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4178,7 +4490,7 @@
    "value": 69.278,
    "unit": "m",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4186,7 +4498,7 @@
    "value": 2.00289,
    "unit": "g",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4194,7 +4506,7 @@
    "value": 1.77717,
    "unit": "g",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4202,7 +4514,7 @@
    "value": 2.30233,
    "unit": "g",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4210,7 +4522,7 @@
    "value": 21.385,
    "unit": "m/s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4218,7 +4530,7 @@
    "value": 18.4919,
    "unit": "m/s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4226,7 +4538,7 @@
    "value": 23.8622,
    "unit": "m/s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4234,7 +4546,7 @@
    "value": 11.27,
    "unit": "s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4242,7 +4554,7 @@
    "value": 7.307,
    "unit": "s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4250,7 +4562,7 @@
    "value": 19.661,
    "unit": "s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4258,7 +4570,7 @@
    "value": 1.0,
    "unit": "-",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4266,7 +4578,7 @@
    "value": 90.1721,
    "unit": "m",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4274,7 +4586,7 @@
    "value": 59.7189,
    "unit": "m",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4282,7 +4594,7 @@
    "value": 170.842,
    "unit": "m",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4290,7 +4602,7 @@
    "value": 2.26489,
    "unit": "g",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4298,7 +4610,7 @@
    "value": 2.10054,
    "unit": "g",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4306,7 +4618,7 @@
    "value": 2.52126,
    "unit": "g",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4314,7 +4626,7 @@
    "value": 21.032,
    "unit": "m/s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4322,7 +4634,7 @@
    "value": 18.1358,
    "unit": "m/s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4330,7 +4642,7 @@
    "value": 23.8251,
    "unit": "m/s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4338,7 +4650,7 @@
    "value": 15.815,
    "unit": "s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4346,7 +4658,7 @@
    "value": 9.9575,
    "unit": "s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4354,7 +4666,7 @@
    "value": 30.621,
    "unit": "s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4362,7 +4674,7 @@
    "value": -5.06475,
    "unit": "deg/CL",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4370,7 +4682,7 @@
    "value": 90.4264,
    "unit": "W",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4378,7 +4690,7 @@
    "value": 1983.18,
    "unit": "rpm",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4386,7 +4698,407 @@
    "value": 11.0339,
    "unit": "m/s",
    "script": "src/stratoglide/build/test_cards.py",
-   "git_sha": "1f941eb",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_stall_eas_lo": {
+   "value": 10.45,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_stall_eas_hi": {
+   "value": 11.55,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_v_bestld_eas_sl_lo": {
+   "value": 12.7184,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_v_bestld_eas_sl_hi": {
+   "value": 15.5448,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_l_d_max_sl_lo": {
+   "value": 10.7068,
+   "unit": "-",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_l_d_max_sl_hi": {
+   "value": 13.086,
+   "unit": "-",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_min_sink_rate_sl_lo": {
+   "value": 0.972207,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_min_sink_rate_sl_hi": {
+   "value": 1.18825,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_trim_elevator_at_loiter_cl_sl_lo": {
+   "value": -2.13183,
+   "unit": "deg",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_trim_elevator_at_loiter_cl_sl_hi": {
+   "value": -1.27909,
+   "unit": "deg",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_static_margin_lo": {
+   "value": 8.491,
+   "unit": "%MAC",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft1_static_margin_hi": {
+   "value": 14.491,
+   "unit": "%MAC",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft2_electrical_power_at_sl_cruise_loiter_cl_lo": {
+   "value": 81.3838,
+   "unit": "W",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft2_electrical_power_at_sl_cruise_loiter_cl_hi": {
+   "value": 99.469,
+   "unit": "W",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft2_climb_rate_at_full_power_sl_lo": {
+   "value": 9.93051,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft2_climb_rate_at_full_power_sl_hi": {
+   "value": 12.1373,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft2_rpm_at_sl_cruise_lo": {
+   "value": 1784.86,
+   "unit": "rpm",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft2_rpm_at_sl_cruise_hi": {
+   "value": 2181.5,
+   "unit": "rpm",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft3_trim_gradient_d_delta_e_dcl_lo": {
+   "value": -6.33094,
+   "unit": "deg/CL",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft3_trim_gradient_d_delta_e_dcl_hi": {
+   "value": -3.79856,
+   "unit": "deg/CL",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft3_neutral_point_x_from_wing_root_le_lo": {
+   "value": 0.150516,
+   "unit": "m",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft3_neutral_point_x_from_wing_root_le_hi": {
+   "value": 0.16636,
+   "unit": "m",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_short_period_natural_frequency_sl_lo": {
+   "value": 6.34066,
+   "unit": "rad/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_short_period_natural_frequency_sl_hi": {
+   "value": 9.51098,
+   "unit": "rad/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_short_period_damping_ratio_sl_lo": {
+   "value": 0.541067,
+   "unit": "-",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_short_period_damping_ratio_sl_hi": {
+   "value": 0.811601,
+   "unit": "-",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_cm_alpha_lo": {
+   "value": -0.682793,
+   "unit": "1/rad",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_cm_alpha_hi": {
+   "value": -0.409675,
+   "unit": "1/rad",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_cm_q_lo": {
+   "value": -11.151,
+   "unit": "1/rad",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_cm_q_hi": {
+   "value": -6.69058,
+   "unit": "1/rad",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_cm_delta_e_lo": {
+   "value": -0.0283587,
+   "unit": "1/deg",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_cm_delta_e_hi": {
+   "value": -0.0170152,
+   "unit": "1/deg",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_cl_p_lo": {
+   "value": -0.547985,
+   "unit": "1/rad",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft4_cl_p_hi": {
+   "value": -0.328791,
+   "unit": "1/rad",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft5_altitude_lost_in_pull_out_lo": {
+   "value": 27.4686,
+   "unit": "m",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft5_altitude_lost_in_pull_out_hi": {
+   "value": 69.278,
+   "unit": "m",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft5_peak_load_factor_lo": {
+   "value": 1.77717,
+   "unit": "g",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft5_peak_load_factor_hi": {
+   "value": 2.30233,
+   "unit": "g",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft5_peak_eas_lo": {
+   "value": 18.4919,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft5_peak_eas_hi": {
+   "value": 23.8622,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft5_time_to_recover_lo": {
+   "value": 7.307,
+   "unit": "s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft5_time_to_recover_hi": {
+   "value": 19.661,
+   "unit": "s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft6_altitude_lost_in_pull_out_lo": {
+   "value": 59.7189,
+   "unit": "m",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft6_altitude_lost_in_pull_out_hi": {
+   "value": 170.842,
+   "unit": "m",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft6_peak_load_factor_lo": {
+   "value": 2.10054,
+   "unit": "g",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft6_peak_load_factor_hi": {
+   "value": 2.52126,
+   "unit": "g",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft6_peak_eas_lo": {
+   "value": 18.1358,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft6_peak_eas_hi": {
+   "value": 23.8251,
+   "unit": "m/s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft6_time_to_recover_lo": {
+   "value": 9.9575,
+   "unit": "s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
+   "run_id": "20261117T203703Z-88e6d46",
+   "inputs_sha": "44136fa355b3678a"
+  },
+  "p8.band_ft6_time_to_recover_hi": {
+   "value": 30.621,
+   "unit": "s",
+   "script": "src/stratoglide/build/test_cards.py#bands",
+   "git_sha": "e776f7e",
    "run_id": "20261117T203703Z-88e6d46",
    "inputs_sha": "44136fa355b3678a"
   },
@@ -4979,6 +5691,24 @@
    "unit": "input",
    "script": "config/bars.yaml",
    "inputs_sha": "329c66080aa03875"
+  },
+  "derived.cd_mape_re100k_200k_worst": {
+   "value": 0.388898,
+   "unit": "-",
+   "script": "src/stratoglide/collect_numbers.py",
+   "note": "worst of E387/SD7037 at Re 100k and 200k: p2.cd_mape_E387_re100k"
+  },
+  "derived.cd_mape_re100k_200k_best": {
+   "value": 0.0553329,
+   "unit": "-",
+   "script": "src/stratoglide/collect_numbers.py",
+   "note": "best of E387/SD7037 at Re 100k and 200k: p2.cd_mape_SD7037_re200k"
+  },
+  "derived.opti_vs_grid_pct": {
+   "value": 0.7037133568361775,
+   "unit": "%",
+   "script": "src/stratoglide/collect_numbers.py",
+   "note": "continuous optimum, Opti vs grid"
   }
  }
 }

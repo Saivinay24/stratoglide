@@ -8,7 +8,7 @@
    "n": 20,
    "name": "build package, name checks, schema, lint, reproducibility",
    "status": "FAIL",
-   "msg": "STEP+STL: STEP True, re-import 7/7 solids, watertight True; mesh vs geometry: span 8.52e-07%, area 0.36% (bar 1%); ArduPlane names: 21 params, invalid []; predictions: schema True, 25 values, unkeyed/mismatched []; report numbers traceable: lint_report.json missing (P9) FAIL; no em dashes: 12 outward files, with U+2014 [], missing ['README.md', 'outputs/report/StratoGlide_Report.html', 'app/static/index.html', 'site/index.html', 'outputs/RESUME_CONTRACT.md'] FAIL; clean-clone reproduces hash: repro.json missing (P9) FAIL"
+   "msg": "STEP+STL: STEP True, re-import 7/7 solids, watertight True; mesh vs geometry: span 8.52e-07%, area 0.36% (bar 1%); ArduPlane names: 21 params, invalid []; predictions: schema True, 25 values, unkeyed/mismatched []; report numbers traceable: 559 numeric tokens, untraceable 0; no em dashes: 12 outward files, with U+2014 [], missing []; clean-clone reproduces hash: repro.json missing (P9) FAIL"
   }
  ]
 }

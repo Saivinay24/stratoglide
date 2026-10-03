@@ -227,3 +227,15 @@ XFOIL at Ncrit 5 vs UIUC Vol 3 (CD MAPE / CLa err / CLmax err):
 - Provenance bug fixed: Numbers.save() overwrote the phase file, so with several scripts per phase the last
   writer silently dropped earlier numbers (P5 lost JSBSim/flutter keys, P6 lost BEMT validation keys). save()
   now merges, replacing only keys from the same script; affected scripts were re-run.
+
+## 2026-11-18 P9 report, site, lint
+
+- Report (HTML + PDF via headless Chrome; WeasyPrint not installed), README and resume contract are rendered
+  from results/numbers.json. Every hardcoded literal found in the first template draft (bars typed in as text)
+  was replaced by its bars.* key before the first lint pass counted.
+- lint_report.py: numeric tokens in report, README, resume contract, site HTML, BOM and test cards must match a
+  numbers.json value (or a frozen config input) at printed precision. First pass: 33 untraceable tokens, all
+  derived band limits printed from raw floats; fixed by recording every band limit and every computed BOM cell
+  as a numbers.json key and rounding printed values from the stored 6-significant-figure value. Now 0.
+- Footprint: tracks that cannot make progress into the P95 wind were -inf in perf.json; the site JSON writes
+  them as null and draws them as gaps instead of plotting a fake reach.

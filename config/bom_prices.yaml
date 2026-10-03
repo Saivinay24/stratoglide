@@ -17,7 +17,7 @@ items:
   heater:             {spec: "polyimide film heater + thermostat MOSFET", qty: 1, inr: 800, vendor_class: "Robu.in class"}
   motor:              {spec: "selected motor (P6)", qty: 1, inr: 6500, vendor_class: "Robu.in class"}
   propeller:          {spec: "carbon folding propeller 0.45 m class + hub/spinner", qty: 1, inr: 3500, vendor_class: "Robu.in class"}
-  battery_cell:       {spec: "21700 NMC 4.9 Ah class cell", qty_from: n_cells, inr: 550, vendor_class: "Robu.in class"}
+  battery_cell:       {spec: "INR21700 NMC 4.9 Ah class cell", qty_from: n_cells, inr: 550, vendor_class: "Robu.in class"}
   bms_holder:         {spec: "4S BMS, nickel strip, cell holders", qty: 1, inr: 1200, vendor_class: "Robu.in class"}
   insulation:         {spec: "closed-cell foam battery and payload boxes", qty: 1, inr: 600, vendor_class: "local"}
   wiring:             {spec: "silicone wire, connectors, servo leads", qty: 1, inr: 1500, vendor_class: "Robu.in class"}

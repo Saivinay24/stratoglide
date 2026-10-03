@@ -3,7 +3,7 @@ unexport VIRTUAL_ENV
 PY := uv run python
 SHELL := /bin/bash
 
-.PHONY: env tools p0 newrun p1 p2 p3 p4 p5 p6 p7 p8 p9 collect verify all report dashboard site clean-results
+.PHONY: env tools p0 newrun p1 p2 p3 p4 p4-studies p5 p6 p7 p8 p9 collect verify coupled pipeline all reproduce report dashboard site clean-results
 
 env:
 	uv sync --frozen
@@ -39,20 +39,31 @@ p3:
 p4:
 	$(PY) -m stratoglide.stability.run_stability
 
-p5:
-	$(PY) -m stratoglide.release.run_release
+p4-studies:
+	$(PY) -m stratoglide.stability.dr_trade
+	$(PY) -m stratoglide.stability.asb_diag
 
 p6:
-	$(PY) -m stratoglide.prop.run_prop
+	$(PY) -m stratoglide.prop.validate_prop
+	$(PY) -m stratoglide.prop.vp_schedule
+
+p5:
+	$(PY) -m stratoglide.release.montecarlo
+	$(PY) -m stratoglide.release.flutter_screen
+	$(PY) -m stratoglide.release.jsbsim_check
 
 p7:
-	$(PY) -m stratoglide.perf.run_perf
+	$(PY) -m stratoglide.perf.perf
 
 p8:
-	$(PY) -m stratoglide.build.run_build
+	$(PY) -m stratoglide.build.cad
+	$(PY) -m stratoglide.build.ardupilot_params
+	$(PY) -m stratoglide.build.bom
+	$(PY) -m stratoglide.collect_numbers
+	$(PY) -m stratoglide.build.test_cards
 
 collect:
-	$(PY) -m stratoglide.report.collect_numbers
+	$(PY) -m stratoglide.collect_numbers
 
 p9: collect
 	$(PY) -m stratoglide.report.build_report
@@ -62,8 +73,19 @@ p9: collect
 verify:
 	$(PY) verify.py $(if $(CHECKS),--checks $(CHECKS),)
 
-# P6 runs before P3 so sizing uses the selected motor/prop; P3 is re-run after P6 per the plan.
-all: env newrun p1 p2 p6 p3 p4 p5 p7 p8 p9 verify
+# Sizing <-> stability <-> propulsion coupling, fixed sequence (reproducible): P3 needs the P6 prop/motor and the
+# P4 span efficiency; P6 needs the P3 thrust requirement. Three P3 passes; the final P4 matches the final P3.
+coupled:
+	$(MAKE) p3 p4 p6
+	$(MAKE) -B p3 p4 p6
+	$(MAKE) -B p3 p4
+
+pipeline: env newrun p1 p2 coupled p4-studies p5 p7 p8 p9
+
+all: pipeline verify
+
+reproduce:
+	$(PY) -m stratoglide.report.repro
 
 report: collect
 	$(PY) -m stratoglide.report.build_report

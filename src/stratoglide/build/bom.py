@@ -51,6 +51,10 @@ def main():
     n = Numbers("p8", "src/stratoglide/build/bom.py")
     n.add("bom_total_inr", total, "INR"); n.add("bom_sourced_pct", 100 * sourced / total, "%")
     n.add("bom_n_items", len(rows))
+    for r in rows:  # every BOM cell that is computed (not a config input) is recorded, so the BOM text is traceable
+        n.add(f"bom_{r['item']}_total_inr", r["total_inr"], "INR")
+        if r["mass_kg"] is not None:
+            n.add(f"bom_{r['item']}_mass_kg", r["mass_kg"], "kg")
     n.save()
     print("BOM total INR", total, "sourced", sourced)
 

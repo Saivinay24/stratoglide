@@ -10,3 +10,7 @@
 | Motor winding temperature at low rho | P6 note: convective cooling falls with rho | lumped motor thermal model + bench test in a vacuum chamber |
 | ArduPilot SITL with the JSBSim model | plan negative scope | SITL JSBSim backend with the generated aircraft XML |
 | FlightLoop correlation | sister project | predictions.json is the contract |
+
+## P9 deferred
+- Streamlit dashboard: deferred. The static site/ (same numbers.json, same hash printed) covers the dashboard
+  content with no server; a Streamlit wrapper adds no new numbers.

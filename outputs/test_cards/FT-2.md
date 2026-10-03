@@ -17,7 +17,7 @@
 |---|---|---|---|---|
 | electrical power at SL cruise (loiter CL) | 90.43 | 81.38 to 99.47 | W | `p8.ft2_p_elec_cruise_w` |
 | climb rate at full power (SL) | 11.03 | 9.931 to 12.14 | m/s | `p8.ft2_climb_rate_full_power` |
-| RPM at SL cruise | 1983 | 1785 to 2181 | rpm | `p8.ft2_rpm_cruise` |
+| RPM at SL cruise | 1983 | 1785 to 2182 | rpm | `p8.ft2_rpm_cruise` |
 
 **Abort criteria:**
 
