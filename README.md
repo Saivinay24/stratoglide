@@ -6,7 +6,7 @@ Balloon-launched stratospheric ISR glider, taken from mission requirements to a 
 
 ```bash
 make all        # tools, every phase P1-P9 into a fresh run directory, numbers.json, report, site, verify.py
-make verify     # just the 20 numbered checks
+make verify     # just the numbered checks 0-20
 ```
 
 ## Results

@@ -14,3 +14,4 @@ before building on any claimed state. Canonical plan: /Users/saivinay/Desktop/ka
 | P5 release: 6-DOF + JSBSim, MC N=500, flutter screen | done; 14 PASS, 15 FAIL (passive 0% by strict definition), 16 PASS | sg-p5-release |
 | P7 performance: polars, endurance, range, footprint, timeline | done; MR-4 met (35.5 min); 19 FAIL (range 5.3% vs 5%) | sg-p7-perf |
 | P8 build: STEP/STL, BOM, ArduPlane params, test cards | done; check 20 parts pending P9 (report, README, site, repro) | sg-p8-build |
+| P9 report, README, site, lint, BLOCKERS | done; clean-clone repro stopped by host memory pressure | stratoglide-v1 |

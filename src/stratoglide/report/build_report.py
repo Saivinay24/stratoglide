@@ -135,7 +135,7 @@ Balloon-launched stratospheric ISR glider, taken from mission requirements to a 
 
 ```bash
 make all        # tools, every phase P1-P9 into a fresh run directory, numbers.json, report, site, verify.py
-make verify     # just the 20 numbered checks
+make verify     # just the numbered checks 0-20
 ```
 
 ## Results
@@ -195,6 +195,8 @@ def main():
     pr = [{"card": p["card"], "quantity": p["quantity"], "numbers_key": p["numbers_key"], "unit": p["unit"],
            "lo": fmt_band(p["band_lo"]), "hi": fmt_band(p["band_hi"])} for p in preds]
     REPORT.mkdir(parents=True, exist_ok=True)
+    # P1 writes its figure only into the run dir; refresh the outputs/ copy every build
+    shutil.copy2(latest_phase_file("p1", "p1_re_map.png"), OUTPUTS / "p1_re_map.png")
     html = env.from_string(TEMPLATE).render(N=Nn, css=CSS, preds=pr)
     (REPORT / "StratoGlide_Report.html").write_text(html)
     (ROOT / "README.md").write_text(env.from_string(README).render(N=Nn))

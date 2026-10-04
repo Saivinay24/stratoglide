@@ -239,3 +239,11 @@ XFOIL at Ncrit 5 vs UIUC Vol 3 (CD MAPE / CLa err / CLmax err):
   as a numbers.json key and rounding printed values from the stored 6-significant-figure value. Now 0.
 - Footprint: tracks that cannot make progress into the P95 wind were -inf in perf.json; the site JSON writes
   them as null and draws them as gaps instead of plotting a fake reach.
+
+## 2026-11-18 clean-clone reproduction (incomplete)
+
+- `make pipeline` from a fresh `git clone` of 3542d31 (backups/clean_clone, log backups/clean_clone.log) rebuilt
+  XFOIL/AVL and ran P1, the full uncached P2 sweep and two passes of the coupled P3/P4/P6 loop. P3 pass 1 (no P6
+  data): MTOW 4.105 kg, 20 cells; pass 2: MTOW 3.761 kg, 16 cells, span 1.618 m (repo: 3.760 kg, 16 cells).
+- The run was then stopped by the host (system low on memory, not a pipeline error), during the second P4 pass.
+  No results/repro.json was written, so check 20's reproducibility item stays FAIL. Not re-run unattended.
